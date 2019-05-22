@@ -1,37 +1,34 @@
 const currentChannels = [
-  {
-    name: "general",
-    messages: [
-      {
-        author: "Yo",
-        content: "Hola",
-        timestamp: new Date()
-      },
-
-      {
-        author: "Ricardo",
-        content: "bebe",
-        timestamp: new Date()
-      }
-    ]
-  },
-
-  {
-    name: "varios",
-    messages: [
-      {
-        author: "Ricardo",
-        content: "Hola",
-        timestamp: new Date()
-      },
-
-      {
-        author: "Valeria",
-        content: "bebe",
-        timestamp: new Date()
-      }
-    ]
-  }
+  // {
+  //   name: "general",
+  //   messages: [
+  //     {
+  //       author: "Yo",
+  //       content: "Hola",
+  //       timestamp: new Date()
+  //     },
+  //     {
+  //       author: "Ricardo",
+  //       content: "bebe",
+  //       timestamp: new Date()
+  //     }
+  //   ]
+  // },
+  // {
+  //   name: "varios",
+  //   messages: [
+  //     {
+  //       author: "Ricardo",
+  //       content: "Hola",
+  //       timestamp: new Date()
+  //     },
+  //     {
+  //       author: "Valeria",
+  //       content: "bebe",
+  //       timestamp: new Date()
+  //     }
+  //   ]
+  // }
 ];
 
 console.log(currentChannels);
@@ -44,8 +41,8 @@ function addChannel(name) {
 
   currentChannels.push(channel);
 }
-addChannel("love");
-console.log(currentChannels);
+// addChannel("love");
+// console.log(currentChannels);
 
 const $channels = document.getElementById("channels");
 
@@ -75,27 +72,15 @@ const titlePlus = document.getElementById("title-plus");
 titlePlus.addEventListener("click", addChannelListener);
 renderChannel(currentChannels);
 
-const searchUSer = document.getElementById("current_user");
-const savedUser = localStorage.getItem("currentUSer");
-searchUSer.innerText = `${savedUser}`;
-console.log(savedUser);
+function saveChannelStorage(channel) {
+  if (localStorage.getItem("lastIndex") == null) {
+    localStorage.setItem("lastIndex", "1");
+    localStorage.setItem("0", channel);
+  } else {
+    let index = localStorage.getItem("lastIndex");
+    localStorage.setItem(index, channel);
 
-const socket = new WebSocket("ws://localhost:3000/connection");
-
-socket.addEventListener("open", () => {
-  console.log("Connection open");
-});
-socket.addEventListener("close", () => {
-  alert("Connection closed");
-});
-socket.addEventListener("message", event => {
-  console.log("Message: %s", event.data);
-});
-
-function send(msg) {
-  socket.send(
-    JSON.stringify({
-      message: msg
-    })
-  );
+    index = (1 + +index).toString();
+    localStorage.setItem("lastIndex", index);
+  }
 }
