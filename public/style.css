@@ -2,6 +2,7 @@ body {
   display: grid;
   grid-template-columns: 220px 1fr;
   margin: 0px;
+  font-family: "Lato", sans-serif;
 }
 
 p {
@@ -9,38 +10,185 @@ p {
   padding: 0px;
 }
 
+span {
+  color: #a7a3a8;
+}
+
 .left-column {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: #411d40;
   height: 100vh;
 }
 
 .left-column p {
-  color: white;
+  color: #a7a3a8;
 }
 
 .fa-chevron-down,
 .fa-bell,
 .fa-plus {
-  color: rgb(226, 226, 226);
+  color: #a7a3a8 !important;
+}
+
+.fa-chevron-down,
+.fa-plus {
+  font-size: 8px;
+}
+
+.fa-chevron-down {
+  margin-left: 6px;
 }
 
 .fa-plus {
-  border: 1px solid white;
+  border: 1px solid #a7a3a8;
   border-radius: 50%;
-  padding: 1.5px;
+  padding: 2px;
+  font-size: 10px;
+}
+
+.fa-plus:hover {
+  color: whitesmoke !important;
+}
+
+.fa-bell {
+  padding-top: 2px;
+  padding-right: 2px;
+  font-size: 20px;
 }
 
 .fa-circle {
   color: rgb(70, 168, 127);
-  size: 1px;
+  font-size: 9px;
+  margin-right: 5px;
 }
 
 .user {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 9px;
+  width: 100%;
+}
+
+.user:hover {
+  background-color: #301231;
+  cursor: pointer;
+}
+
+.user:hover .usuario {
+  color: white !important;
+}
+
+.fa-bell:hover {
+  color: white !important;
+}
+
+.title-user {
+  padding-left: 15px;
+}
+
+.bell {
+  padding-right: 15px;
+}
+
+.codeable {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: white !important;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.jump-to {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  padding: 0.4em;
+  background-color: #280e29;
+  font-size: 16px;
+  border-radius: 10%;
+  margin-top: 6px;
+}
+
+.left-part img {
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+}
+
+.directions {
+  visibility: hidden;
+}
+
+.jump-to:hover {
+  cursor: pointer;
+}
+
+.jump-to:hover .directions {
+  visibility: visible;
+}
+
+.threads {
+  font-size: 15.5px;
+  width: 88%;
+  display: flex;
+  color: #a7a3a8;
+  margin-top: 13px;
+  margin-bottom: 20px;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 4px;
+  padding-bottom: 3px;
+}
+
+.threads:hover {
+  background-color: #301231;
+  cursor: pointer;
+}
+
+.fa-comment-dots {
+  margin-right: 5px;
+}
+
+.channels-list {
+  width: 86%;
+}
+
+.title-plus {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.title-plus:hover {
+  cursor: pointer;
+}
+
+.title-plus:hover span {
+  color: white !important;
+}
+
+.channels {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.channels:hover {
+  background-color: #301231;
+  cursor: pointer;
 }
 
 .right-column {
