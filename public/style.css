@@ -1,0 +1,51 @@
+body {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  margin: 0px;
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  background-color: #411d40;
+  height: 100vh;
+}
+
+.left-column p {
+  color: white;
+}
+
+.fa-chevron-down,
+.fa-bell,
+.fa-plus {
+  color: rgb(226, 226, 226);
+}
+
+.fa-plus {
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 1.5px;
+}
+
+.fa-circle {
+  color: rgb(70, 168, 127);
+  size: 1px;
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
