@@ -47,4 +47,10 @@ function addChannel(name){
   addChannel("love");
   console.log(currentChannels);
 
-  
+
+  function addChannelListener(){
+    addChannel("name");
+  } 
+
+  const titlePlus = document.getElementById("title-plus");
+  titlePlus.addEventListener("click", addChannelListener);
