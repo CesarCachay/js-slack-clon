@@ -36,16 +36,27 @@ const currentChannels = [
 
 console.log(currentChannels);
 
-function addChannel(name){
-  const channel =  {
+function addChannel(name) {
+  const channel = {
     name: name,
     messages: []
-  }
-  
-  currentChannels.push(channel)
+  };
+
+  currentChannels.push(channel);
 }
-  addChannel("love");
-  console.log(currentChannels);
+addChannel("love");
+console.log(currentChannels);
+
+const $channels = document.getElementById("channels");
+
+function renderChannel(list) {
+  return list.map(channel => {
+    let p = document.createElement("p");
+
+    p.innerHTML = `<p class="channel-item"># ${channel.name}</p>`;
+    $channels.appendChild(p);
+  });
+}
 
 
   function addChannelListener(){
@@ -54,3 +65,4 @@ function addChannel(name){
 
   const titlePlus = document.getElementById("title-plus");
   titlePlus.addEventListener("click", addChannelListener);
+renderChannel(currentChannels);
