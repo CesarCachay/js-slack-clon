@@ -50,6 +50,7 @@ console.log(currentChannels);
 const $channels = document.getElementById("channels");
 
 function renderChannel(list) {
+  $channels.innerHTML = "";
   return list.map(channel => {
     let p = document.createElement("p");
 
@@ -58,11 +59,11 @@ function renderChannel(list) {
   });
 }
 
+function addChannelListener() {
+  addChannel("name");
+  renderChannel(currentChannels);
+}
 
-  function addChannelListener(){
-    addChannel("name");
-  } 
-
-  const titlePlus = document.getElementById("title-plus");
-  titlePlus.addEventListener("click", addChannelListener);
+const titlePlus = document.getElementById("title-plus");
+titlePlus.addEventListener("click", addChannelListener);
 renderChannel(currentChannels);
