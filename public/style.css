@@ -181,20 +181,12 @@ span {
   color: white !important;
 }
 
-<<<<<<< HEAD
-.channels {
-=======
 .channel-item {
->>>>>>> 4d6b900fe7e7f221116e8d8fd031fd2c3e39a8da
   padding-top: 3px;
   padding-bottom: 3px;
 }
 
-<<<<<<< HEAD
-.channels:hover {
-=======
 .channel-item:hover {
->>>>>>> 4d6b900fe7e7f221116e8d8fd031fd2c3e39a8da
   background-color: #301231;
   cursor: pointer;
 }
