@@ -181,12 +181,12 @@ span {
   color: white !important;
 }
 
-.channels {
+.channel-item {
   padding-top: 3px;
   padding-bottom: 3px;
 }
 
-.channels:hover {
+.channel-item:hover {
   background-color: #301231;
   cursor: pointer;
 }
