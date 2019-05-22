@@ -35,3 +35,16 @@ const currentChannels = [
 ];
 
 console.log(currentChannels);
+
+function addChannel(name){
+  const channel =  {
+    name: name,
+    messages: []
+  }
+  
+  currentChannels.push(channel)
+}
+  addChannel("love");
+  console.log(currentChannels);
+
+  
