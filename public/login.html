@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sign In</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="top-bar">
+    <div class=right-part>
+      <a class="logo-img" href="#"></a>
+    </div>
+    <ul class="left-part">
+      <li>
+        <a class="left-part__link" href="#">Product</a>
+      </li>
+      <li>
+        <a class="left-part__link" href="#">Pricing</a>
+      </li>
+      <li>
+        <a class="left-part__link" href="#">Support</a>
+      </li>
+      <li>
+        <a class="left-part__link" href="">Create a new workspace</a>
+      </li>
+      <li>
+        <a class="left-part__link" href="">Find your workspace</a>
+      </li>
+      <li>
+        <button class="left-part__login" href="">Sign In</button>
+      </li>
+    </ul>
+  </div>
+  </div>
+
+  <div class="div_form">
+    <form class="form" name="login">
+      <div class="form__group">
+        <h1>Sign in to your workspace</h1>
+        <p>Enter your workspace’s Slack URL.</p>
+        <p class="form__input-place">
+          <input id="my_user" name="usuario" type="text" class="form-control" placeholder="your-workspace-url">
+          <span>.slack.com</span>
+        </p>
+      </div>
+      <button onclick="Login()" class="form__button" type="button">Continue <i class="fas fa-arrow-right"></i></button>
+      <p class="form__question">Don't know your workspace URL?
+        <a class="form__remember">Find your workspace</a>
+      </p>
+    </form>
+  </div>
+  <div class="bottom">
+    <p class="bottom__question">Need to get your group started on Slack?
+      <a class="bottom__create" href="#">Create a new space</a>
+    </p>
+  </div>
+
+  <script src="login-styles.css"></script>
+</body>
+
+</html>
