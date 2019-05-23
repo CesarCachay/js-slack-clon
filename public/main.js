@@ -1,4 +1,4 @@
-const currentChannels = [
+let currentChannels = [
   {
     name: "general",
     messages: [
@@ -25,7 +25,7 @@ function addChannel(name) {
   };
 
   currentChannels.push(channel);
-  saveChannelStorage(name);
+  saveChannelStorage();
 }
 
 const $channels = document.getElementById("channels");
@@ -110,17 +110,13 @@ function makeComment() {
   console.log(send(inputMessage));
 }
 
-function initialize() {
-  const titlePlus = document.getElementById("title-plus");
-  titlePlus.addEventListener("click", addChannelListener);
+const titlePlus = document.getElementById("title-plus");
+titlePlus.addEventListener("click", addChannelListener);
 
-  var localChannels = localStorage.getItem("currentChannels");
-  if (localChannels == null) {
-    saveChannelStorage();
-  } else {
-    currentChannels = JSON.parse(localChannels);
-  }
-  renderChannel(currentChannels);
+var localChannels = localStorage.getItem("currentChannels");
+if (localChannels == null) {
+  saveChannelStorage();
+} else {
+  currentChannels = JSON.parse(localChannels);
 }
-
-initialize();
+renderChannel(currentChannels);
