@@ -53,7 +53,7 @@ function addChannel(name) {
   };
 
   currentChannels.push(channel);
-  saveChannelStorage(name);
+  saveChannelStorage();
 }
 
 function addChannelListener() {
