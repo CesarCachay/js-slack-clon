@@ -1,0 +1,176 @@
+body {
+  background: rgb(214, 208, 208) !important;
+}
+
+.logo-img {
+  background: url(/slack_logo.png) left top no-repeat;
+  background-size: 106px 60px;
+  height: 55px;
+  width: 160px;
+  float: left;
+  margin: 5px 0 0 1rem;
+}
+
+.left-part__login {
+  border: 2px solid #606060;
+  padding: 10px 14px 10px;
+  line-height: 1em;
+  text-decoration: none;
+  color: #616061;
+  background: white;
+  border-radius: 4px;
+  font-size: 12pt;
+  margin-left: 17px;
+  margin-right: 10px;
+  box-shadow: 0 0 0 1px #616061;
+  cursor: pointer;
+}
+
+.left-part__login:hover {
+  color: black;
+}
+
+.top-bar {
+  height: 70px;
+  width: 1351px;
+  background: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-bar a {
+  text-decoration: none;
+}
+
+.right-part {
+  display: flex;
+  justify-content: center;
+}
+
+.right-part a {
+  font-size: 20px;
+}
+
+.left-part {
+  list-style-type: none;
+  margin: 0 20px 0 0;
+  padding: 0;
+  float: right;
+  line-height: 70px;
+  display: block;
+}
+
+.left-part li {
+  display: inline-block;
+  justify-content: space-around;
+  margin: 0 5px;
+}
+
+.left-part__link:hover {
+  background: #E6E6E6;
+  color: rgb(58, 54, 54);
+}
+
+.right-part a   {
+  font-weight: 900;
+  color: black;
+}
+
+.left-part a {
+  color: rgb(185, 185, 185);
+  font-weight: 900;
+}
+
+.div_form {
+  width: 37%; 
+  color: #333333;
+  margin: 0 auto;
+  padding: 10px 0;
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  height: 330px;
+}
+
+.form {
+  background-color: #fff;
+  border-radius: .25rem;
+  box-shadow: 0 1px 0 rgba(0,0,0,.25);
+  padding: 2rem 2rem 1rem;
+  margin: 0 auto 2rem;
+  position: relative;
+  border: 1px solid #ddd;
+}
+
+.form__group {
+  text-align: center;
+  font-size: 18px;
+}
+
+.form_center {
+  justify-self: center;
+  padding: 25px;
+}
+
+.form__button {
+  background: #237B5A;
+  width: 360px;
+  height: 50px;
+  color: white;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.form__question {
+  text-align: center !important;
+  font-size: 18px;
+}
+
+.form__remember {
+  font-size: 18px !important;
+  text-decoration: none;
+  color: #1363A3;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  margin-left: 9px;
+  position: relative;
+  cursor: pointer;
+  line-height: 1em;
+  padding: 8px 7px 9px;
+  border-radius: 5px;
+  opacity: .8;
+}
+
+.bottom {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.bottom__create {
+  font-size: 18px !important;
+  text-decoration: none;
+  color: #1363A3;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  margin-left: 9px;
+  position: relative;
+  cursor: pointer;
+  line-height: 1em;
+  border-radius: 5px;
+  opacity: .8;
+}
+
+/* helpers */
+
+.bwhite {
+  background: #FFFFFF !important;
+}
+
+.inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
