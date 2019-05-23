@@ -196,4 +196,80 @@ span {
   flex-direction: column;
   height: 100vh;
   justify-content: space-between;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 42px;
+  width: 100%;
+  align-items: center;
+  padding-top: 11px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid lightgray;
+}
+
+.channel-info {
+  margin-top: 10px;
+  margin-left: 18px;
+}
+
+.channel-title {
+  font-weight: bolder;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.quick-options-and-topics {
+  font-size: 13px;
+  color: #827f83;
+}
+
+.fa-star {
+  padding-right: 3px;
+}
+
+.fa-user {
+  padding-left: 3px;
+  padding-right: 2px;
+}
+
+.fa-thumbtack {
+  padding-left: 3px;
+  padding-right: 2px;
+}
+
+.fa-phone,
+.fa-info-circle,
+.fa-cog,
+.fa-at,
+.fa-star,
+.fa-ellipsis-v {
+  height: 22px;
+  width: 22px;
+  padding: 6px;
+  color: #827f83;
+}
+
+.search-bar {
+  height: 30px;
+  width: 195px;
+  border-radius: 0.5em;
+  padding-left: 0.5em;
+  border: 1px solid rgb(110, 110, 110);
+  color: rgb(196, 196, 196);
+}
+
+.input-msg {
+  width: 100%;
+}
+
+.input-message {
+  padding: 9px 66px 9px 9px;
+  margin: 0px 15px 20px 15px;
+  width: 89%;
+  height: 26px;
+  border: 1px solid rgb(15, 15, 15);
+  border-radius: 0.5em;
 }
