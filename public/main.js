@@ -99,3 +99,8 @@ function send(msg) {
     })
   );
 }
+
+function makeComment(){
+  let inputMessage = document.getElementById('input-message').value;
+  console.log(inputMessage);
+}
