@@ -1,37 +1,34 @@
 const currentChannels = [
-  {
-    name: "general",
-    messages: [
-      {
-        author: "Yo",
-        content: "Hola",
-        timestamp: new Date()
-      },
-
-      {
-        author: "Ricardo",
-        content: "bebe",
-        timestamp: new Date()
-      }
-    ]
-  },
-
-  {
-    name: "varios",
-    messages: [
-      {
-        author: "Ricardo",
-        content: "Hola",
-        timestamp: new Date()
-      },
-
-      {
-        author: "Valeria",
-        content: "bebe",
-        timestamp: new Date()
-      }
-    ]
-  }
+  // {
+  //   name: "general",
+  //   messages: [
+  //     {
+  //       author: "Yo",
+  //       content: "Hola",
+  //       timestamp: new Date()
+  //     },
+  //     {
+  //       author: "Ricardo",
+  //       content: "bebe",
+  //       timestamp: new Date()
+  //     }
+  //   ]
+  // },
+  // {
+  //   name: "varios",
+  //   messages: [
+  //     {
+  //       author: "Ricardo",
+  //       content: "Hola",
+  //       timestamp: new Date()
+  //     },
+  //     {
+  //       author: "Valeria",
+  //       content: "bebe",
+  //       timestamp: new Date()
+  //     }
+  //   ]
+  // }
 ];
 
 console.log(currentChannels);
@@ -44,19 +41,21 @@ function addChannel(name) {
 
   currentChannels.push(channel);
 }
-addChannel("love");
-console.log(currentChannels);
+// addChannel("love");
+// console.log(currentChannels);
 
 const $channels = document.getElementById("channels");
 
 function renderChannel(list) {
   $channels.innerHTML = "";
-  return list.map(channel => {
+  list.map(channel => {
     let p = document.createElement("p");
-
-    p.innerHTML = `<p class="channel-item"># ${channel.name}</p>`;
+    p.innerHTML = `<p class="channel-item" data-name="${channel.name}># ${
+      channel.name
+    }</p>`;
     $channels.appendChild(p);
   });
+  addListener();
 }
 
 function addChannelListener() {
@@ -66,9 +65,6 @@ function addChannelListener() {
     addChannel(channelFromPrompt);
     renderChannel(currentChannels);
   }
-
-  addChannel("name");
-  renderChannel(currentChannels);
 }
 
 const titlePlus = document.getElementById("title-plus");
@@ -99,3 +95,24 @@ function send(msg) {
     })
   );
 }
+
+function addListener() {
+  const channelItem = document.getElementsByClassName("channel-item");
+  for (i = 0; i < channelItem.length; i++) {
+    channelItem[i].addEventListener("click", saveChannelStorage);
+  }
+}
+
+function saveChannelStorage() {
+  const channel = this.dataset.name;
+  localStorage.setItem(channel, channel);
+}
+
+function showChannelStorage() {
+  for (var i = 0; i < localStorage.length; i++) {
+    addChannel(localStorage.key(i));
+  }
+  renderChannel(currentChannels);
+}
+
+showChannelStorage();
