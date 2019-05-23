@@ -16,6 +16,7 @@ let currentChannels = [
   }
 ];
 
+let activeChannel = "general";
 const $channels = document.getElementById("channels");
 
 // Get user from Local Storage
@@ -94,12 +95,26 @@ function send(msg) {
 
 // Sent messages using the form
 function makeComment() {
-  let inputMessage = document.getElementById("input-message").value;
+  let inputElement = document.getElementById("input-message");
+  let inputMessage = inputElement.value;
   console.log(send(inputMessage));
+  newMessage = {
+    author: savedUser,
+    content: inputMessage,
+    timestamp: new Date()
+  };
+
+  let channel = currentChannels.find(obj => {
+    return obj.name === activeChannel;
+  });
+  channel.messages.push(newMessage);
+  renderComments(activeChannel);
+  inputElement.parentElement.reset();
 }
 
 // Render the messages TO DO
 function renderComments(channelName) {
+  activeChannel = channelName;
   let channel = currentChannels.find(obj => {
     return obj.name === channelName;
   });
