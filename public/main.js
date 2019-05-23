@@ -67,6 +67,8 @@ function addChannelListener() {
     renderChannel(currentChannels);
   }
   
+  addChannel("name");
+  renderChannel(currentChannels);
 }
 
 const titlePlus = document.getElementById("title-plus");
