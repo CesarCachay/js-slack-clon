@@ -93,6 +93,7 @@ function send(msg) {
   );
 }
 
+
 function saveChannelStorage(channel) {
   localStorage.setItem(channel, channel);
 }
@@ -105,3 +106,8 @@ function showChannelStorage() {
 }
 
 showChannelStorage();
+
+function makeComment(){
+  let inputMessage = document.getElementById('input-message').value;
+  console.log(inputMessage);
+}
