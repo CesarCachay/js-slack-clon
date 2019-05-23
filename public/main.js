@@ -60,6 +60,13 @@ function renderChannel(list) {
 }
 
 function addChannelListener() {
+  let channelFromPrompt = window.prompt("Add new channel,here","defaultText");
+
+  if (channelFromPrompt != null) {
+    addChannel(channelFromPrompt);
+    renderChannel(currentChannels);
+  }
+  
   addChannel("name");
   renderChannel(currentChannels);
 }
@@ -67,3 +74,4 @@ function addChannelListener() {
 const titlePlus = document.getElementById("title-plus");
 titlePlus.addEventListener("click", addChannelListener);
 renderChannel(currentChannels);
+
