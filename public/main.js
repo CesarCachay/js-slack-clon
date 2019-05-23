@@ -47,13 +47,14 @@ function addChannel(name) {
 const $channels = document.getElementById("channels");
 
 function renderChannel(list) {
-  $channels.innerHTML = "";
-  return list.map(channel => {
-    let p = document.createElement("p");
-
-    p.innerHTML = `<p class="channel-item"># ${channel.name}</p>`;
-    $channels.appendChild(p);
+  let html = "";
+  list.forEach(channel => {
+    html += `<p class="channel-item" data-name="${channel.name}"># ${
+      channel.name
+    }</p>`;
   });
+  $channels.innerHTML = html;
+  addListener();
 }
 
 function addChannelListener() {
@@ -72,7 +73,16 @@ const titlePlus = document.getElementById("title-plus");
 titlePlus.addEventListener("click", addChannelListener);
 renderChannel(currentChannels);
 
-function saveChannelStorage(channel) {
+function addListener() {
+  const channelItem = document.getElementsByClassName("channel-item");
+  for (i = 0; i < channelItem.length; i++) {
+    channelItem[i].addEventListener("click", saveChannelStorage);
+  }
+}
+
+function saveChannelStorage() {
+  const channel = this.dataset.name;
+  console.log(channel);
   if (localStorage.getItem("lastIndex") == null) {
     localStorage.setItem("lastIndex", "1");
     localStorage.setItem("0", channel);
@@ -84,3 +94,13 @@ function saveChannelStorage(channel) {
     localStorage.setItem("lastIndex", index);
   }
 }
+
+//When the page is reload
+function showChannelStorage() {
+  for (i = 0; i < localStorage.length - 1; i++) {
+    addChannel(localStorage.getItem(i));
+  }
+  renderChannel(currentChannels);
+}
+
+showChannelStorage();
