@@ -50,6 +50,7 @@ console.log(currentChannels);
 const $channels = document.getElementById("channels");
 
 function renderChannel(list) {
+  $channels.innerHTML = "";
   return list.map(channel => {
     let p = document.createElement("p");
 
@@ -58,4 +59,19 @@ function renderChannel(list) {
   });
 }
 
+function addChannelListener() {
+  let channelFromPrompt = window.prompt("Add new channel,here","defaultText");
+
+  if (channelFromPrompt != null) {
+    addChannel(channelFromPrompt);
+    renderChannel(currentChannels);
+  }
+  
+  addChannel("name");
+  renderChannel(currentChannels);
+}
+
+const titlePlus = document.getElementById("title-plus");
+titlePlus.addEventListener("click", addChannelListener);
 renderChannel(currentChannels);
+
