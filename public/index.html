@@ -1,57 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Slack Clone</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="left-column">
-      <div class="user">
-        <div class="title-user">
-          <p class="codeable">Codeable <i class="fas fa-chevron-down"></i></p>
-          <p class="usuario"><i class="fas fa-circle"></i> Usuario</p>
-        </div>
-        <div class="bell">
-          <i class="far fa-bell"></i>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Slack Clone</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="left-column">
+    <div class="user">
+      <div class="title-user">
+        <p class="codeable">Codeable <i class="fas fa-chevron-down"></i></p>
+        <p id="current_user" class="usuario"><i class="fas fa-circle"></i> Usuario</p>
       </div>
-      <div class="jump-to">
-        <div class="left-part">
-          <img
-            src="https://www.iconsdb.com/icons/preview/white/search-xxl.png"
-            alt="search icon"
-          />
-          <span>Jump to...</span>
-        </div>
-        <span class="directions">Ctrl + K</span>
-      </div>
-      <div class="threads"><i class="far fa-comment-dots"></i> Threads</div>
-      <div class="channels-list">
-        <div id="title-plus" class="title-plus">
-          <span>Channels</span>
-         <i class="fas fa-plus"></i>
-        </div>
-        <section id="channels"></section>
+      <div class="bell">
+        <i class="far fa-bell"></i>
       </div>
     </div>
-    <div class="right-column">
-      <div class="header">Header</div>
-      <div class="msg-display">here come the messages</div>
-      <div class="input-msg">here u write a message</div>
+    <div class="jump-to">
+      <div class="left-part">
+        <img src="https://www.iconsdb.com/icons/preview/white/search-xxl.png" alt="search icon" />
+        <span>Jump to...</span>
+      </div>
+      <span class="directions">Ctrl + K</span>
     </div>
-    <script src="./main.js"></script>
-  </body>
+    <div class="threads"><i class="far fa-comment-dots"></i> Threads</div>
+    <div class="channels-list">
+      <div id="title-plus" class="title-plus">
+        <span>Channels</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <section id="channels"></section>
+    </div>
+  </div>
+  <div class="right-column">
+    <div class="header">Header</div>
+    <div class="msg-display">here come the messages</div>
+    <div class="input-msg">here u write a message</div>
+  </div>
+  <script src="main.js"></script>
+</body>
+
 </html>

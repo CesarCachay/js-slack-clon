@@ -67,3 +67,8 @@ function addChannelListener() {
 const titlePlus = document.getElementById("title-plus");
 titlePlus.addEventListener("click", addChannelListener);
 renderChannel(currentChannels);
+
+const searchUSer = document.getElementById("current_user");
+const savedUser = localStorage.getItem("currentUSer");
+searchUSer.innerText = `${savedUser}`;
+console.log(savedUser);
