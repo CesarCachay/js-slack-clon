@@ -75,10 +75,36 @@ const titlePlus = document.getElementById("title-plus");
 titlePlus.addEventListener("click", addChannelListener);
 renderChannel(currentChannels);
 
+function renderComments(channelName) {
+  let channel = currentChannels.find(obj => {
+    return obj.name === channelName;
+  });
+
+  let msgDisplay = document.getElementsByClassName("msg-display")[0];
+  msgDisplay.innerHTML = "";
+  channel.messages.forEach(channelMessage => {
+    const p = document.createElement("p");
+    p.innerHTML = `<p class="message-item">${channelMessage.author} : ${
+      channelMessage.content
+    } ${channelMessage.timestamp}</p>`;
+    msgDisplay.appendChild(p);
+  });
+}
+
+let channelItems = document.getElementsByClassName("channel-item");
+channelItems = Array.from(channelItems);
+
+channelItems.map(channelItem => {
+  const channelName = channelItem.innerText.slice(2);
+  channelItem.addEventListener("click", () => renderComments(channelName));
+});
+
+/// server
+
 const searchUSer = document.getElementById("current_user");
 const savedUser = localStorage.getItem("currentUSer");
 searchUSer.innerText = `${savedUser}`;
-console.log(savedUser);
+// console.log(savedUser);
 
 const socket = new WebSocket("ws://localhost:3000/connection");
 
