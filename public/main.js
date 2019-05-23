@@ -7,7 +7,6 @@ const currentChannels = [
         content: "Hola",
         timestamp: new Date()
       },
-
       {
         author: "Ricardo",
         content: "bebe",
@@ -15,7 +14,6 @@ const currentChannels = [
       }
     ]
   },
-
   {
     name: "varios",
     messages: [
@@ -24,7 +22,6 @@ const currentChannels = [
         content: "Hola",
         timestamp: new Date()
       },
-
       {
         author: "Valeria",
         content: "bebe",
@@ -43,9 +40,8 @@ function addChannel(name) {
   };
 
   currentChannels.push(channel);
+  saveChannelStorage(name);
 }
-addChannel("love");
-console.log(currentChannels);
 
 const $channels = document.getElementById("channels");
 
@@ -54,7 +50,7 @@ function renderChannel(list) {
   return list.map(channel => {
     let p = document.createElement("p");
 
-    p.innerHTML = `<p class="channel-item"># ${channel.name}</p>`;
+    p.innerHTML = `<p class="channel-item" ># ${channel.name}</p>`;
     $channels.appendChild(p);
   });
 }
@@ -66,9 +62,6 @@ function addChannelListener() {
     addChannel(channelFromPrompt);
     renderChannel(currentChannels);
   }
-
-  addChannel("name");
-  renderChannel(currentChannels);
 }
 
 const titlePlus = document.getElementById("title-plus");
@@ -99,6 +92,20 @@ function send(msg) {
     })
   );
 }
+
+
+function saveChannelStorage(channel) {
+  localStorage.setItem(channel, channel);
+}
+
+function showChannelStorage() {
+  for (var i = 0; i < localStorage.length; i++) {
+    addChannel(localStorage.key(i));
+  }
+  renderChannel(currentChannels);
+}
+
+showChannelStorage();
 
 function makeComment(){
   let inputMessage = document.getElementById('input-message').value;
