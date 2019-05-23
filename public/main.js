@@ -60,13 +60,13 @@ function renderChannel(list) {
 }
 
 function addChannelListener() {
-  let channelFromPrompt = window.prompt("Add new channel,here","defaultText");
+  let channelFromPrompt = window.prompt("Add new channel,here", "defaultText");
 
   if (channelFromPrompt != null) {
     addChannel(channelFromPrompt);
     renderChannel(currentChannels);
   }
-  
+
   addChannel("name");
   renderChannel(currentChannels);
 }
@@ -75,3 +75,27 @@ const titlePlus = document.getElementById("title-plus");
 titlePlus.addEventListener("click", addChannelListener);
 renderChannel(currentChannels);
 
+const searchUSer = document.getElementById("current_user");
+const savedUser = localStorage.getItem("currentUSer");
+searchUSer.innerText = `${savedUser}`;
+console.log(savedUser);
+
+const socket = new WebSocket("ws://localhost:3000/connection");
+
+socket.addEventListener("open", () => {
+  console.log("Connection open");
+});
+socket.addEventListener("close", () => {
+  alert("Connection closed");
+});
+socket.addEventListener("message", event => {
+  console.log("Message: %s", event.data);
+});
+
+function send(msg) {
+  socket.send(
+    JSON.stringify({
+      message: msg
+    })
+  );
+}
