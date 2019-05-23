@@ -107,10 +107,10 @@ function renderComments(channelName) {
   let msgDisplay = document.getElementsByClassName("msg-display")[0];
   msgDisplay.innerHTML = "";
   channel.messages.forEach(channelMessage => {
-    const p = document.createElement("p");
-    p.innerHTML = `<p class="message-item">${channelMessage.author} : ${
-      channelMessage.content
-    } ${channelMessage.timestamp}</p>`;
-    msgDisplay.appendChild(p);
+    const divMessage = document.createElement("div");
+    divMessage.innerHTML = `<p class="message-item">${
+      channelMessage.author
+    } : ${channelMessage.content} ${channelMessage.timestamp}</p>`;
+    msgDisplay.appendChild(divMessage);
   });
 }
