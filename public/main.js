@@ -13,21 +13,6 @@ const currentChannels = [
         timestamp: new Date()
       }
     ]
-  },
-  {
-    name: "varios",
-    messages: [
-      {
-        author: "Ricardo",
-        content: "Hola",
-        timestamp: new Date()
-      },
-      {
-        author: "Valeria",
-        content: "bebe",
-        timestamp: new Date()
-      }
-    ]
   }
 ];
 
@@ -63,10 +48,6 @@ function addChannelListener() {
     renderChannel(currentChannels);
   }
 }
-
-const titlePlus = document.getElementById("title-plus");
-titlePlus.addEventListener("click", addChannelListener);
-renderChannel(currentChannels);
 
 function renderComments(channelName) {
   let channel = currentChannels.find(obj => {
@@ -114,25 +95,32 @@ socket.addEventListener("message", event => {
 function send(msg) {
   socket.send(
     JSON.stringify({
-      message: msg
+      message: msg,
+      user: localStorage.getItem("currentUser")
     })
   );
 }
 
-function saveChannelStorage(channel) {
-  localStorage.setItem(channel, channel);
+function saveChannelStorage() {
+  localStorage.setItem("currentChannels", JSON.stringify(currentChannels));
 }
 
-function showChannelStorage() {
-  for (var i = 0; i < localStorage.length; i++) {
-    addChannel(localStorage.key(i));
+function makeComment() {
+  let inputMessage = document.getElementById("input-message").value;
+  console.log(send(inputMessage));
+}
+
+function initialize() {
+  const titlePlus = document.getElementById("title-plus");
+  titlePlus.addEventListener("click", addChannelListener);
+
+  var localChannels = localStorage.getItem("currentChannels");
+  if (localChannels == null) {
+    saveChannelStorage();
+  } else {
+    currentChannels = JSON.parse(localChannels);
   }
   renderChannel(currentChannels);
 }
 
-showChannelStorage();
-
-function makeComment() {
-  let inputMessage = document.getElementById("input-message").value;
-  console.log(inputMessage);
-}
+initialize();
