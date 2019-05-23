@@ -95,7 +95,8 @@ function send(msg) {
 
 // Sent messages using the form
 function makeComment() {
-  let inputMessage = document.getElementById("input-message").value;
+  let inputElement = document.getElementById("input-message");
+  let inputMessage = inputElement.value;
   console.log(send(inputMessage));
   newMessage = {
     author: savedUser,
@@ -108,6 +109,7 @@ function makeComment() {
   });
   channel.messages.push(newMessage);
   renderComments(activeChannel);
+  inputElement.parentElement.reset();
 }
 
 // Render the messages TO DO
