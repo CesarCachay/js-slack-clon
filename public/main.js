@@ -93,13 +93,6 @@ function send(msg) {
   );
 }
 
-function addListener() {
-  const channelItem = document.getElementsByClassName("channel-item");
-  for (i = 0; i < channelItem.length; i++) {
-    channelItem[i].addEventListener("click", saveChannelStorage);
-  }
-}
-
 function saveChannelStorage(channel) {
   localStorage.setItem(channel, channel);
 }
