@@ -324,19 +324,21 @@ span {
   cursor: pointer;
 }
 
-.input-msg {
-  width: 100%;
-}
-
 .msg-display {
   overflow-y: auto;
   width: 98%;
   padding-left: 15px;
 }
 
+.input-msg {
+  width: 100%;
+  grid-template-columns: 44px 1fr 22px 22px;
+  margin-bottom: 20px;
+}
+
 .input-message {
   padding: 9px 66px 9px 9px;
-  margin: 0px 15px 20px 15px;
+  margin: 0px 15px;
   width: 89%;
   height: 26px;
   border: 1px solid rgb(15, 15, 15);

@@ -3,7 +3,7 @@ body {
 }
 
 .logo-img {
-  background: url(/slack_logo.png) left top no-repeat;
+  background: url(../assets/slack_logo.png) left top no-repeat;
   background-size: 106px 60px;
   height: 55px;
   width: 160px;
@@ -33,7 +33,7 @@ body {
 .top-bar {
   height: 70px;
   width: 1351px;
-  background: #FFFFFF;
+  background: #ffffff;
   display: flex;
   justify-content: space-between;
 }
@@ -67,11 +67,11 @@ body {
 }
 
 .left-part__link:hover {
-  background: #E6E6E6;
+  background: #e6e6e6;
   color: rgb(58, 54, 54);
 }
 
-.right-part a   {
+.right-part a {
   font-weight: 900;
   color: black;
 }
@@ -82,7 +82,7 @@ body {
 }
 
 .div_form {
-  width: 37%; 
+  width: 37%;
   color: #333333;
   margin: 0 auto;
   padding: 10px 0;
@@ -95,8 +95,8 @@ body {
 
 .form {
   background-color: #fff;
-  border-radius: .25rem;
-  box-shadow: 0 1px 0 rgba(0,0,0,.25);
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
   padding: 2rem 2rem 1rem;
   margin: 0 auto 2rem;
   position: relative;
@@ -114,7 +114,7 @@ body {
 }
 
 .form__button {
-  background: #237B5A;
+  background: #237b5a;
   width: 360px;
   height: 50px;
   color: white;
@@ -130,7 +130,7 @@ body {
 .form__remember {
   font-size: 18px !important;
   text-decoration: none;
-  color: #1363A3;
+  color: #1363a3;
   display: inline-block;
   font-size: 15px;
   font-weight: 700;
@@ -140,7 +140,7 @@ body {
   line-height: 1em;
   padding: 8px 7px 9px;
   border-radius: 5px;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .bottom {
@@ -151,7 +151,7 @@ body {
 .bottom__create {
   font-size: 18px !important;
   text-decoration: none;
-  color: #1363A3;
+  color: #1363a3;
   display: inline-block;
   font-size: 15px;
   font-weight: 700;
@@ -160,13 +160,13 @@ body {
   cursor: pointer;
   line-height: 1em;
   border-radius: 5px;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 /* helpers */
 
 .bwhite {
-  background: #FFFFFF !important;
+  background: #ffffff !important;
 }
 
 .inline {
