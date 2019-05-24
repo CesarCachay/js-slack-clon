@@ -22,7 +22,6 @@ let currentChannels = [
   }
 ];
 
-let activeChannel = "general";
 const $channels = document.getElementById("channels");
 
 // Get user from Local Storage
@@ -42,6 +41,13 @@ if (localChannels == null) {
   currentChannels = JSON.parse(localChannels);
 }
 renderChannel(currentChannels);
+
+var activeChannel = localStorage.getItem("activeChannel");
+if (activeChannel == null) {
+  localStorage.setItem("activeChannel", "general");
+  activeChannel = "general";
+}
+renderComments(activeChannel);
 
 // Channels
 // Initialize channels
@@ -95,7 +101,8 @@ function send(msg) {
   socket.send(
     JSON.stringify({
       message: msg,
-      user: localStorage.getItem("currentUser")
+      user: localStorage.getItem("currentUser"),
+      channel: activeChannel
     })
   );
 }
@@ -103,6 +110,7 @@ function send(msg) {
 // Sent messages using the form
 function receiveComment(inputMessage) {
   // {message: "Esto fue una prueba", user: "CesarCachay"}
+  console.log("recived message: ", inputMessage);
   const newMessage = {
     author: inputMessage.user,
     content: inputMessage.message,
@@ -116,32 +124,20 @@ function receiveComment(inputMessage) {
     return obj.name === activeChannel;
   });
   channel.messages.push(newMessage);
+  saveChannelStorage();
   renderComments(activeChannel);
 }
 
 function makeComment() {
   let inputElement = document.getElementById("input-message");
   let inputMessage = inputElement.value;
-  console.log(send(inputMessage));
-  newMessage = {
-    author: savedUser,
-    content: inputMessage,
-    timestamp: new Date().toLocaleTimeString(undefined, {
-      hour: "2-digit",
-      minute: "2-digit"
-    })
-  };
-
-  let channel = currentChannels.find(obj => {
-    return obj.name === activeChannel;
-  });
-  // channel.messages.push(newMessage);
-  // renderComments(activeChannel);
+  send(inputMessage);
   inputElement.parentElement.reset();
 }
 
 // Render the messages TO DO
 function renderComments(channelName) {
+  localStorage.setItem("activeChannel", channelName);
   document.getElementById("channel-title").innerText = `#${channelName}`;
   activeChannel = channelName;
   let channel = currentChannels.find(obj => {
