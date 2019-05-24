@@ -60,14 +60,19 @@ function addChannel(name) {
 
   currentChannels.push(channel);
   saveChannelStorage();
+  return currentChannels[currentChannels.length - 1];
 }
 
 function addChannelListener() {
-  let channelFromPrompt = window.prompt("Add new channel,here", "defaultText");
+  let channelFromPrompt = window.prompt("Add new channel,here", " ");
 
   if (channelFromPrompt != null) {
     addChannel(channelFromPrompt);
     renderChannel(currentChannels);
+
+    new Notification("Slack Clone", {
+      body: "New channel is created"
+    });
   }
 }
 
@@ -109,8 +114,8 @@ function send(msg) {
 
 // Sent messages using the form
 function receiveComment(inputMessage) {
-  // {message: "Esto fue una prueba", user: "CesarCachay"}
-  console.log("recived message: ", inputMessage);
+  // {message: "Esto fue una prueba", user: "CesarCachay", channel: "varios"}
+  console.log("received message: ", inputMessage);
   const newMessage = {
     author: inputMessage.user,
     content: inputMessage.message,
@@ -121,8 +126,14 @@ function receiveComment(inputMessage) {
   };
 
   let channel = currentChannels.find(obj => {
-    return obj.name === activeChannel;
+    return obj.name === inputMessage.channel;
   });
+
+  if (channel == undefined) {
+    channel = addChannel(inputMessage.channel);
+    renderChannel(currentChannels);
+  }
+
   channel.messages.push(newMessage);
   saveChannelStorage();
   renderComments(activeChannel);
@@ -168,3 +179,12 @@ socket.addEventListener("message", event => {
   const newMessages = JSON.parse(event.data);
   receiveComment(newMessages);
 });
+
+async function askNotification() {
+  let status = await Notification.requestPermission();
+  if (Notification.permission !== "granted") {
+    console.log("notification desactive"); // replace by notification custom
+  }
+}
+
+askNotification();
