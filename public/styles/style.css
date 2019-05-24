@@ -58,6 +58,24 @@ span {
   font-size: 20px;
 }
 
+.bell .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 3px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  margin-left: -11px;
+  font-size: 15px;
+}
+
+.bell:hover .tooltiptext {
+  visibility: visible;
+}
+
 .fa-circle {
   color: rgb(70, 168, 127);
   font-size: 9px;
@@ -117,14 +135,15 @@ span {
   padding: 0.4em;
   background-color: #280e29;
   font-size: 16px;
-  border-radius: 10%;
+  border-radius: 0.3em;
   margin-top: 6px;
 }
 
-.left-part img {
-  width: 12px;
-  height: 12px;
-  margin-right: 5px;
+.fa-search {
+  font-size: 12px;
+  color: #a7a3a8;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .directions {
@@ -226,6 +245,11 @@ span {
   color: #827f83;
 }
 
+.channel-options {
+  display: flex;
+  align-items: center;
+}
+
 .fa-star {
   padding-right: 3px;
 }
@@ -252,22 +276,69 @@ span {
   color: #827f83;
 }
 
-.search-bar {
-  height: 30px;
+.fa-user:hover,
+.fa-thumbtack:hover,
+.fa-phone:hover,
+.fa-info-circle:hover,
+.fa-cog:hover,
+.fa-ellipsis-v:hover {
+  color: rgb(48, 96, 158);
+  cursor: pointer;
+}
+
+.fa-star:hover {
+  color: yellow;
+  cursor: pointer;
+}
+
+.fa-at:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.search-box {
+  height: 32px;
   width: 195px;
   border-radius: 0.5em;
   padding-left: 0.5em;
   border: 1px solid rgb(110, 110, 110);
   color: rgb(196, 196, 196);
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  margin-bottom: 3px;
+}
+
+.search-box span {
+  margin-left: 5px;
+  font-size: 15px;
+}
+
+.search-box .fa-search {
+  font-size: 15px;
+}
+
+.search-box:hover span,
+.search-box:hover .fa-search {
+  color: rgb(48, 96, 158);
+  cursor: pointer;
+}
+
+.msg-display {
+  overflow-y: auto;
+  width: 98%;
+  padding-left: 15px;
 }
 
 .input-msg {
   width: 100%;
+  grid-template-columns: 44px 1fr 22px 22px;
+  margin-bottom: 20px;
 }
 
 .input-message {
   padding: 9px 66px 9px 9px;
-  margin: 0px 15px 20px 15px;
+  margin: 0px 15px;
   width: 89%;
   height: 26px;
   border: 1px solid rgb(15, 15, 15);

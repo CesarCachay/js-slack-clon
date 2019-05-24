@@ -22,7 +22,7 @@ const $channels = document.getElementById("channels");
 // Get user from Local Storage
 const searchUSer = document.getElementById("current_user");
 const savedUser = localStorage.getItem("currentUser");
-searchUSer.innerText = `${savedUser}`;
+searchUSer.innerHTML = `<i class="fas fa-circle"></i> ${savedUser}`;
 
 // Initialize
 
