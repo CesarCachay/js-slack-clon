@@ -5,12 +5,18 @@ let currentChannels = [
       {
         author: "Yo",
         content: "Hola",
-        timestamp: new Date()
+        timestamp: new Date().toLocaleTimeString(undefined, {
+          hour: "2-digit",
+          minute: "2-digit"
+        })
       },
       {
         author: "Ricardo",
         content: "bebe",
-        timestamp: new Date()
+        timestamp: new Date().toLocaleTimeString(undefined, {
+          hour: "2-digit",
+          minute: "2-digit"
+        })
       }
     ]
   }
@@ -102,7 +108,10 @@ function makeComment() {
   newMessage = {
     author: savedUser,
     content: inputMessage,
-    timestamp: new Date()
+    timestamp: new Date().toLocaleTimeString(undefined, {
+      hour: "2-digit",
+      minute: "2-digit"
+    })
   };
 
   let channel = currentChannels.find(obj => {
@@ -125,9 +134,9 @@ function renderComments(channelName) {
   msgDisplay.innerHTML = "";
   channel.messages.forEach(channelMessage => {
     const divMessage = document.createElement("div");
-    divMessage.innerHTML = `<p class="message-item">${
-      channelMessage.author
-    } : ${channelMessage.content} ${channelMessage.timestamp}</p>`;
+    divMessage.innerHTML = `<p class="message-item">${channelMessage.author} ${
+      channelMessage.timestamp
+    }</p> <p>${channelMessage.content}</p>`;
     msgDisplay.appendChild(divMessage);
   });
 }
