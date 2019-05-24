@@ -63,11 +63,15 @@ function addChannel(name) {
 }
 
 function addChannelListener() {
-  let channelFromPrompt = window.prompt("Add new channel,here", "defaultText");
+  let channelFromPrompt = window.prompt("Add new channel,here", " ");
 
   if (channelFromPrompt != null) {
     addChannel(channelFromPrompt);
     renderChannel(currentChannels);
+
+    new Notification("Slack Clone", {
+      body: "New channel is created"
+    });
   }
 }
 
@@ -168,3 +172,12 @@ socket.addEventListener("message", event => {
   const newMessages = JSON.parse(event.data);
   receiveComment(newMessages);
 });
+
+async function askNotification() {
+  let status = await Notification.requestPermission();
+  if (Notification.permission !== "granted") {
+    console.log("notification desactive"); // replace by notification custom
+  }
+}
+
+askNotification();
