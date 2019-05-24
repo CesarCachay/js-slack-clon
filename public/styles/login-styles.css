@@ -1,12 +1,13 @@
 body {
   background: rgb(214, 208, 208) !important;
+  font-family: "Lato", sans-serif;
 }
 
 .logo-img {
   background: url(../assets/slack_logo.png) left top no-repeat;
-  background-size: 106px 60px;
+  background-size: 200px 60px;
   height: 55px;
-  width: 160px;
+  width: 200px;
   float: left;
   margin: 5px 0 0 1rem;
 }
@@ -32,7 +33,7 @@ body {
 
 .top-bar {
   height: 70px;
-  width: 1351px;
+  width: 100%;
   background: #ffffff;
   display: flex;
   justify-content: space-between;
@@ -120,6 +121,15 @@ body {
   color: white;
   font-size: 20px;
   font-weight: 900;
+}
+
+#my_user {
+  height: 50px;
+  width: 200px;
+}
+
+#my_user[type="text"] {
+  text-align: right;
 }
 
 .form__question {
