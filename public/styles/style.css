@@ -11,7 +11,7 @@ p {
 }
 
 span {
-  color: #a7a3a8;
+  color: #848385;
 }
 
 .left-column {
@@ -192,6 +192,10 @@ span {
   margin-bottom: 8px;
 }
 
+.title-plus span {
+  color: #b1b1b1 !important;
+}
+
 .title-plus:hover {
   cursor: pointer;
 }
@@ -242,7 +246,7 @@ span {
 
 .quick-options-and-topics {
   font-size: 13px;
-  color: #827f83;
+  color: #4d4d4d;
 }
 
 .channel-options {
@@ -312,6 +316,7 @@ span {
 .search-box span {
   margin-left: 5px;
   font-size: 15px;
+  color: #666666;
 }
 
 .search-box .fa-search {
