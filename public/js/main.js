@@ -106,7 +106,10 @@ function receiveComment(inputMessage) {
   const newMessage = {
     author: inputMessage.user,
     content: inputMessage.message,
-    timestamp: new Date()
+    timestamp: new Date().toLocaleTimeString(undefined, {
+      hour: "2-digit",
+      minute: "2-digit"
+    })
   };
 
   let channel = currentChannels.find(obj => {
