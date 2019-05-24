@@ -57,7 +57,7 @@ function addChannel(name) {
 }
 
 function addChannelListener() {
-  let channelFromPrompt = window.prompt("Add new channel,here", "defaultText");
+  let channelFromPrompt = window.prompt("Add new channel,here", " ");
 
   if (channelFromPrompt != null) {
     addChannel(channelFromPrompt);
