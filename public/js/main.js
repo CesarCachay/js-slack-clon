@@ -5,12 +5,18 @@ let currentChannels = [
       {
         author: "Yo",
         content: "Hola",
-        timestamp: new Date()
+        timestamp: new Date().toLocaleTimeString(undefined, {
+          hour: "2-digit",
+          minute: "2-digit"
+        })
       },
       {
         author: "Ricardo",
         content: "bebe",
-        timestamp: new Date()
+        timestamp: new Date().toLocaleTimeString(undefined, {
+          hour: "2-digit",
+          minute: "2-digit"
+        })
       }
     ]
   }
@@ -95,14 +101,15 @@ function send(msg) {
 }
 
 // Sent messages using the form
-function makeComment() {
-  let inputElement = document.getElementById("input-message");
-  let inputMessage = inputElement.value;
-  console.log(send(inputMessage));
-  newMessage = {
-    author: savedUser,
-    content: inputMessage,
-    timestamp: new Date()
+function receiveComment(inputMessage) {
+  // {message: "Esto fue una prueba", user: "CesarCachay"}
+  const newMessage = {
+    author: inputMessage.user,
+    content: inputMessage.message,
+    timestamp: new Date().toLocaleTimeString(undefined, {
+      hour: "2-digit",
+      minute: "2-digit"
+    })
   };
 
   let channel = currentChannels.find(obj => {
@@ -110,6 +117,26 @@ function makeComment() {
   });
   channel.messages.push(newMessage);
   renderComments(activeChannel);
+}
+
+function makeComment() {
+  let inputElement = document.getElementById("input-message");
+  let inputMessage = inputElement.value;
+  console.log(send(inputMessage));
+  newMessage = {
+    author: savedUser,
+    content: inputMessage,
+    timestamp: new Date().toLocaleTimeString(undefined, {
+      hour: "2-digit",
+      minute: "2-digit"
+    })
+  };
+
+  let channel = currentChannels.find(obj => {
+    return obj.name === activeChannel;
+  });
+  // channel.messages.push(newMessage);
+  // renderComments(activeChannel);
   inputElement.parentElement.reset();
 }
 
@@ -125,9 +152,23 @@ function renderComments(channelName) {
   msgDisplay.innerHTML = "";
   channel.messages.forEach(channelMessage => {
     const divMessage = document.createElement("div");
-    divMessage.innerHTML = `<p class="message-item">${
-      channelMessage.author
-    } : ${channelMessage.content} ${channelMessage.timestamp}</p>`;
+    divMessage.innerHTML = `<p class="message-item">${channelMessage.author} ${
+      channelMessage.timestamp
+    }</p> <p>${channelMessage.content}</p>`;
     msgDisplay.appendChild(divMessage);
   });
 }
+
+/// Server
+const socket = new WebSocket("ws://localhost:3000/connection");
+
+socket.addEventListener("open", () => {
+  console.log("Connection open");
+});
+socket.addEventListener("close", () => {
+  alert("Connection closed");
+});
+socket.addEventListener("message", event => {
+  const newMessages = JSON.parse(event.data);
+  receiveComment(newMessages);
+});
