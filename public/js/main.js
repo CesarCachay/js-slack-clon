@@ -60,6 +60,7 @@ function addChannel(name) {
 
   currentChannels.push(channel);
   saveChannelStorage();
+  return currentChannels[currentChannels.length - 1];
 }
 
 function addChannelListener() {
@@ -109,7 +110,7 @@ function send(msg) {
 
 // Sent messages using the form
 function receiveComment(inputMessage) {
-  // {message: "Esto fue una prueba", user: "CesarCachay"}
+  // {message: "Esto fue una prueba", user: "CesarCachay", channel: "varios"}
   console.log("received message: ", inputMessage);
   const newMessage = {
     author: inputMessage.user,
@@ -121,8 +122,14 @@ function receiveComment(inputMessage) {
   };
 
   let channel = currentChannels.find(obj => {
-    return obj.name === activeChannel;
+    return obj.name === inputMessage.channel;
   });
+
+  if (channel == undefined) {
+    channel = addChannel(inputMessage.channel);
+    renderChannel(currentChannels);
+  }
+
   channel.messages.push(newMessage);
   saveChannelStorage();
   renderComments(activeChannel);
