@@ -39,13 +39,6 @@ renderChannel(currentChannels);
 
 // Channels
 // Initialize channels
-let channelItems = document.getElementsByClassName("channel-item");
-channelItems = Array.from(channelItems);
-
-channelItems.map(channelItem => {
-  const channelName = channelItem.innerText.slice(2);
-  channelItem.addEventListener("click", () => renderComments(channelName));
-});
 
 function addChannel(name) {
   const channel = {
@@ -68,11 +61,19 @@ function addChannelListener() {
 
 function renderChannel(list) {
   $channels.innerHTML = "";
-  return list.map(channel => {
+  list.map(channel => {
     let p = document.createElement("p");
 
     p.innerHTML = `<p class="channel-item" ># ${channel.name}</p>`;
     $channels.appendChild(p);
+  });
+
+  let channelItems = document.getElementsByClassName("channel-item");
+  channelItems = Array.from(channelItems);
+
+  channelItems.map(channelItem => {
+    const channelName = channelItem.innerText.slice(2);
+    channelItem.addEventListener("click", () => renderComments(channelName));
   });
 }
 
