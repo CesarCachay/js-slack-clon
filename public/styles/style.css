@@ -335,6 +335,10 @@ span {
   padding-left: 15px;
 }
 
+.message-group {
+  text-align: center;
+}
+
 .input-msg {
   width: 100%;
   grid-template-columns: 44px 1fr 22px 22px;
