@@ -157,16 +157,12 @@ function makeComment() {
   inputElement.parentElement.reset();
 }
 
-<<<<<<< HEAD
 function findChannelByName(channelName) {
   return currentChannels.find(obj => {
     return obj.name === channelName;
   });
 }
 // Render the messages TO DO
-=======
-// Render the messages
->>>>>>> 21a67730f2640bef8caea222ce347dd68dc6dc6b
 function renderComments(channelName) {
   localStorage.setItem("activeChannel", channelName);
   document.getElementById("channel-title").innerText = `#${channelName}`;
