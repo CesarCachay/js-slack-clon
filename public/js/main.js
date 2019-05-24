@@ -110,7 +110,11 @@ function send(msg) {
 
 // Sent messages using the form
 function receiveComment(inputMessage) {
+<<<<<<< HEAD
   // {message: "Esto fue una prueba", user: "CesarCachay", channel: "varios"}
+=======
+  // {message: "Esto fue una prueba", user: "CesarCachay"}
+>>>>>>> 06475151d5c267290d2f146634e5675c9b79bbd0
   console.log("received message: ", inputMessage);
   const newMessage = {
     author: inputMessage.user,
