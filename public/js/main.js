@@ -95,6 +95,21 @@ function send(msg) {
 }
 
 // Sent messages using the form
+function receiveComment(inputMessage) {
+  // {message: "Esto fue una prueba", user: "CesarCachay"}
+  const newMessage = {
+    author: inputMessage.user,
+    content: inputMessage.message,
+    timestamp: new Date()
+  };
+
+  let channel = currentChannels.find(obj => {
+    return obj.name === activeChannel;
+  });
+  channel.messages.push(newMessage);
+  renderComments(activeChannel);
+}
+
 function makeComment() {
   let inputElement = document.getElementById("input-message");
   let inputMessage = inputElement.value;
@@ -108,8 +123,8 @@ function makeComment() {
   let channel = currentChannels.find(obj => {
     return obj.name === activeChannel;
   });
-  channel.messages.push(newMessage);
-  renderComments(activeChannel);
+  // channel.messages.push(newMessage);
+  // renderComments(activeChannel);
   inputElement.parentElement.reset();
 }
 
@@ -131,3 +146,17 @@ function renderComments(channelName) {
     msgDisplay.appendChild(divMessage);
   });
 }
+
+/// Server
+const socket = new WebSocket("ws://localhost:3000/connection");
+
+socket.addEventListener("open", () => {
+  console.log("Connection open");
+});
+socket.addEventListener("close", () => {
+  alert("Connection closed");
+});
+socket.addEventListener("message", event => {
+  const newMessages = JSON.parse(event.data);
+  receiveComment(newMessages);
+});
