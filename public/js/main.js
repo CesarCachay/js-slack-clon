@@ -31,6 +31,7 @@ let currentChannels = [
   }
 ];
 
+const socket = new WebSocket("ws://localhost:3000/connection");
 const $channels = document.getElementById("channels");
 
 // Get user from Local Storage
@@ -203,7 +204,6 @@ function renderComments(channelName) {
 }
 
 /// Server
-const socket = new WebSocket("ws://localhost:3000/connection");
 
 socket.addEventListener("open", () => {
   console.log("Connection open");
