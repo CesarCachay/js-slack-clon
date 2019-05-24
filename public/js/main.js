@@ -154,8 +154,10 @@ function receiveComment(inputMessage) {
 function makeComment() {
   let inputElement = document.getElementById("input-message");
   let inputMessage = inputElement.value;
-  send(inputMessage);
-  inputElement.parentElement.reset();
+  if (inputMessage != "") {
+    send(inputMessage);
+    inputElement.parentElement.reset();
+  }
 }
 
 function findChannelByName(channelName) {
