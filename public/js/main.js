@@ -164,6 +164,9 @@ function renderComments(channelName) {
     }</p> <p>${channelMessage.content}</p>`;
     msgDisplay.appendChild(divMessage);
   });
+  document
+    .querySelector(".msg-display")
+    .scrollTo(0, document.querySelector(".msg-display").scrollHeight);
 }
 
 /// Server
