@@ -53,6 +53,11 @@ renderComments(activeChannel);
 // Initialize channels
 
 function addChannel(name) {
+  if (findChannelByName(name)) {
+    console.log("already exists");
+    return;
+  }
+
   const channel = {
     name: name,
     messages: []
@@ -64,7 +69,9 @@ function addChannel(name) {
 }
 
 function addChannelListener() {
-  let channelFromPrompt = window.prompt("Add new channel,here", " ");
+  let channelFromPrompt = window
+    .prompt("Add new channel,here", "")
+    .replace(/\s/g, "_");
 
   if (channelFromPrompt != null) {
     addChannel(channelFromPrompt);
@@ -125,9 +132,7 @@ function receiveComment(inputMessage) {
     })
   };
 
-  let channel = currentChannels.find(obj => {
-    return obj.name === inputMessage.channel;
-  });
+  let channel = findChannelByName(inputMessage.channel);
 
   if (channel == undefined) {
     channel = addChannel(inputMessage.channel);
@@ -146,14 +151,19 @@ function makeComment() {
   inputElement.parentElement.reset();
 }
 
+function findChannelByName(channelName) {
+  return currentChannels.find(obj => {
+    return obj.name === channelName;
+  });
+}
 // Render the messages TO DO
 function renderComments(channelName) {
   localStorage.setItem("activeChannel", channelName);
   document.getElementById("channel-title").innerText = `#${channelName}`;
   activeChannel = channelName;
-  let channel = currentChannels.find(obj => {
-    return obj.name === channelName;
-  });
+
+  let channel = findChannelByName(channelName);
+  console.log(channel);
 
   let msgDisplay = document.getElementsByClassName("msg-display")[0];
   msgDisplay.innerHTML = "";
