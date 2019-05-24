@@ -5,18 +5,27 @@ let currentChannels = [
       {
         author: "Yo",
         content: "Hola",
-        timestamp: new Date().toLocaleTimeString(undefined, {
-          hour: "2-digit",
-          minute: "2-digit"
-        })
+        timestamp: new Date("May 22, 2016 15:00:00")
       },
       {
         author: "Ricardo",
-        content: "bebe",
-        timestamp: new Date().toLocaleTimeString(undefined, {
-          hour: "2-digit",
-          minute: "2-digit"
-        })
+        content: "como estas?",
+        timestamp: new Date("May 22, 2016 16:00:00")
+      },
+      {
+        author: "Yo",
+        content: "muy bien",
+        timestamp: new Date("May 23, 2016 15:00:00")
+      },
+      {
+        author: "Ricardo",
+        content: "tu",
+        timestamp: new Date("May 23, 2016 15:00:00")
+      },
+      {
+        author: "Yo",
+        content: "muy bien too",
+        timestamp: new Date("May 23, 2016 15:00:00")
       }
     ]
   }
@@ -126,10 +135,7 @@ function receiveComment(inputMessage) {
   const newMessage = {
     author: inputMessage.user,
     content: inputMessage.message,
-    timestamp: new Date().toLocaleTimeString(undefined, {
-      hour: "2-digit",
-      minute: "2-digit"
-    })
+    timestamp: new Date()
   };
 
   let channel = findChannelByName(inputMessage.channel);
@@ -151,12 +157,16 @@ function makeComment() {
   inputElement.parentElement.reset();
 }
 
+<<<<<<< HEAD
 function findChannelByName(channelName) {
   return currentChannels.find(obj => {
     return obj.name === channelName;
   });
 }
 // Render the messages TO DO
+=======
+// Render the messages
+>>>>>>> 21a67730f2640bef8caea222ce347dd68dc6dc6b
 function renderComments(channelName) {
   localStorage.setItem("activeChannel", channelName);
   document.getElementById("channel-title").innerText = `#${channelName}`;
@@ -167,13 +177,33 @@ function renderComments(channelName) {
 
   let msgDisplay = document.getElementsByClassName("msg-display")[0];
   msgDisplay.innerHTML = "";
+
+  var tempTime = "";
   channel.messages.forEach(channelMessage => {
+    const divMessageGroup = document.createElement("hr");
+    divMessageGroup.className = "message-group";
+    divMessageGroup.innerHTML = `${channelMessage.timestamp.toDateString()}`;
     const divMessage = document.createElement("div");
-    divMessage.innerHTML = `<p class="message-item">${channelMessage.author} ${
-      channelMessage.timestamp
-    }</p> <p>${channelMessage.content}</p>`;
-    msgDisplay.appendChild(divMessage);
+
+    divMessage.innerHTML = `<p class="message-item">${
+      channelMessage.author
+    } ${channelMessage.timestamp.toLocaleTimeString(undefined, {
+      hour: "2-digit",
+      minute: "2-digit"
+    })}</p> <p>${channelMessage.content}</p>`;
+
+    //For grouping messages
+    if (channelMessage.timestamp.getDate() != tempTime) {
+      msgDisplay.appendChild(divMessageGroup);
+      msgDisplay.appendChild(divMessage);
+    } else {
+      msgDisplay.appendChild(divMessage);
+    }
+    tempTime = channelMessage.timestamp.getDate();
   });
+  document
+    .querySelector(".msg-display")
+    .scrollTo(0, document.querySelector(".msg-display").scrollHeight);
 }
 
 /// Server
