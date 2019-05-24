@@ -100,6 +100,7 @@ function makeComment() {
 
 // Render the messages TO DO
 function renderComments(channelName) {
+  document.getElementById("channel-title").innerText = `#${channelName}`;
   let channel = currentChannels.find(obj => {
     return obj.name === channelName;
   });
