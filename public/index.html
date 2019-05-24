@@ -38,7 +38,7 @@
     </div>
 
     <div class="div_form">
-      <form class="form" name="login" action="javascript:Login();">
+      <form class="form" name="login" action="./main.html" onsubmit="Login()" id="login-form">
         <div class="form__group">
           <h1>Sign in to your workspace</h1>
           <p>Enter your workspace’s Slack URL.</p>
@@ -47,7 +47,7 @@
             <span>.slack.com</span>
           </p>
         </div>
-        <input type="submit" onclick="Login()" class="form__button" type="button"></i></input>
+        <input type="submit" class="form__button"></input>
         <p class="form__question">Don't know your workspace URL?
           <a class="form__remember">Find your workspace</a>
         </p>
