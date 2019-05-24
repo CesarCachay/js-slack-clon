@@ -17,26 +17,21 @@
       rel="stylesheet"
     />
   </head>
-
   <body>
     <div class="left-column">
       <div class="user">
         <div class="title-user">
           <p class="codeable">Codeable <i class="fas fa-chevron-down"></i></p>
-          <p id="current_user" class="usuario">
-            <i class="fas fa-circle"></i> Usuario
-          </p>
+          <p id="current_user" class="usuario"></p>
         </div>
         <div class="bell">
           <i class="far fa-bell"></i>
+          <span class="tooltiptext">Notifications</span>
         </div>
       </div>
       <div class="jump-to">
         <div class="left-part">
-          <img
-            src="https://www.iconsdb.com/icons/preview/white/search-xxl.png"
-            alt="search icon"
-          />
+          <i class="fas fa-search"></i>
           <span>Jump to...</span>
         </div>
         <span class="directions">Ctrl + K</span>
@@ -63,24 +58,23 @@
           <i class="fas fa-phone"></i>
           <i class="fas fa-info-circle"></i>
           <i class="fas fa-cog"></i>
-          <input
-            type="text"
-            class="search-bar"
-            placeholder="&#x1F50D; Search"
-          />
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+          </div>
           <i class="fas fa-at"></i>
           <i class="far fa-star"></i>
           <i class="fas fa-ellipsis-v"></i>
         </div>
       </div>
-      <div class="msg-display">here come the messages</div>
+      <div class="msg-display"></div>
       <div class="input-msg">
         <form action="javascript:makeComment();">
           <input
             type="text"
             id="input-message"
             class="input-message"
-            placeholder="Message #general"
+            placeholder="&#65291; |  Message #general"
           />
         </form>
       </div>
