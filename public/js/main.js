@@ -149,11 +149,10 @@ function receiveComment(inputMessage) {
   channel.messages.push(newMessage);
   saveChannelStorage();
   renderComments(activeChannel);
-    
-  if(localStorage.getItem("currentUser") !== newMessage.author) {
+
+  if (localStorage.getItem("currentUser") !== newMessage.author) {
     const sound = new Audio("../assets/notification-sound.mp3");
     sound.play();
-
   }
 }
 
@@ -231,6 +230,10 @@ socket.addEventListener("close", () => {
 socket.addEventListener("message", event => {
   const newMessages = JSON.parse(event.data);
   receiveComment(newMessages);
+  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+  console.log(newMessages);
+  console.log(sendNotification(newMessages));
+  sendNotification(newMessages);
 });
 
 async function askNotification() {
@@ -241,3 +244,20 @@ async function askNotification() {
 }
 
 askNotification();
+
+function sendNotification(currentUser) {
+  if (
+    currentUser.user != currentUser.name &&
+    currentUser.channel != currentChannels
+  ) {
+    const notification = new Notification("New message", {
+      body: `${currentUser.user}: ${currentUser.content}`,
+      icon: "./assets/slack_logo.png"
+    });
+    notification.onclick = event => {
+      notification.close();
+    };
+  }
+}
+
+// sendNotification(inputMessage);
