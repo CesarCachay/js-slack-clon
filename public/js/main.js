@@ -150,7 +150,7 @@ function receiveComment(inputMessage) {
   saveChannelStorage();
   renderComments(activeChannel);
     
-  if(localStorage.getItem("currentUser") != newMessage.author) {
+  if(localStorage.getItem("currentUser") !== newMessage.author) {
     const sound = new Audio("../assets/notification-sound.mp3");
     sound.play();
 
