@@ -3,6 +3,9 @@ body {
   grid-template-columns: 220px 1fr;
   margin: 0px;
   font-family: "Lato", sans-serif;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 p {
@@ -182,6 +185,30 @@ span {
 
 .channels-list {
   width: 86%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.channels-list::-webkit-scrollbar * {
+  background: transparent;
+}
+
+.channels-list::-webkit-scrollbar {
+  width: 8px;
+  background-color: #411d40;
+}
+
+.channels-list::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.channels-list:hover::-webkit-scrollbar-thumb {
+  background-color: rgb(175, 161, 182, 0.8) !important;
+  border-radius: 5px;
+}
+
+.channels-list:hover::-webkit-scrollbar-track {
+  background-color: #411d40;
 }
 
 .title-plus {
@@ -331,12 +358,36 @@ span {
 
 .msg-display {
   overflow-y: auto;
+  overflow-x: hidden;
   height: 100%;
   width: 98%;
   padding-left: 15px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+}
+
+.single-message {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+
+.single-message img {
+  height: 36px;
+  width: 36px;
+  margin-right: 7px;
+}
+
+.msg-author {
+  color: black !important;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.msg-date,
+.msg-content {
+  font-size: 15px;
 }
 
 .single-message {
