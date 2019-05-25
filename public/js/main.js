@@ -32,6 +32,7 @@ let currentChannels = [
 ];
 
 const socket = new WebSocket("ws://localhost:3000/connection");
+// const socket = new WebSocket("ws://192.168.86.66:3000/connection");
 const $channels = document.getElementById("channels");
 
 // Get user from Local Storage
@@ -97,17 +98,12 @@ function renderChannel(list) {
   $channels.innerHTML = "";
   list.map(channel => {
     let p = document.createElement("p");
+    p.className = "channel-item";
 
-    p.innerHTML = `<p class="channel-item" ># ${channel.name}</p>`;
+    p.innerText = `${channel.name}`;
+
+    p.addEventListener("click", () => renderComments(channel.name, p));
     $channels.appendChild(p);
-  });
-
-  let channelItems = document.getElementsByClassName("channel-item");
-  channelItems = Array.from(channelItems);
-
-  channelItems.map(channelItem => {
-    const channelName = channelItem.innerText.slice(2);
-    channelItem.addEventListener("click", () => renderComments(channelName));
   });
 }
 
@@ -148,7 +144,7 @@ function receiveComment(inputMessage) {
 
   channel.messages.push(newMessage);
   saveChannelStorage();
-  renderComments(activeChannel);
+  renderComments(activeChannel, null);
 
   if (localStorage.getItem("currentUser") !== newMessage.author) {
     const sound = new Audio("../assets/notification-sound.mp3");
@@ -170,34 +166,50 @@ function findChannelByName(channelName) {
     return obj.name === channelName;
   });
 }
+
+function colorChannel(channelElement) {
+  let channels = document.getElementsByClassName("channel-item");
+  channels = Array.from(channels);
+  channels.forEach(channel => {
+    channel.style.backgroundColor = "";
+    channel.style.color = "rgb(167, 163, 168)";
+  });
+  if (channelElement) {
+    channelElement.style.backgroundColor = "rgb(16,100,163)";
+    channelElement.style.color = "rgb(255,255,255)";
+  }
+}
+
 // Render the messages TO DO
-function renderComments(channelName) {
+function renderComments(channelName, p) {
   localStorage.setItem("activeChannel", channelName);
   document.getElementById("channel-title").innerText = `#${channelName}`;
   activeChannel = channelName;
+  colorChannel(p);
 
   let channel = findChannelByName(channelName);
-  console.log(channel);
+  console.log(p);
 
   let msgDisplay = document.getElementsByClassName("msg-display")[0];
   msgDisplay.innerHTML = "";
 
   var tempTime = "";
   channel.messages.forEach(channelMessage => {
-    const divMessageGroup = document.createElement("hr");
+    const divMessageGroup = document.createElement("div");
     divMessageGroup.className = "message-group";
     let savedTime = new Date(channelMessage.timestamp);
 
     // Comparison of dates for group
     if (savedTime.toDateString() === new Date().toDateString()) {
-      divMessageGroup.innerHTML = "Today";
+      divMessageGroup.innerHTML = "<div>Today</div><hr>";
     } else if (savedTime.toDateString() === calDateBefore()) {
-      divMessageGroup.innerHTML = "Yesterday";
+      divMessageGroup.innerHTML = "<div>Yesterday</div><hr>";
     } else {
-      divMessageGroup.innerHTML = `${savedTime.toDateString()}`;
+      divMessageGroup.innerHTML = `<div>${savedTime.toDateString()}</div><hr>`;
     }
 
     const divMessage = document.createElement("div");
+    divMessage.className = "single-message-container";
     //Render messages
     divMessage.innerHTML = `<div class="single-message">
       <img src="./assets/user_icon.png" alt="user's icon">
