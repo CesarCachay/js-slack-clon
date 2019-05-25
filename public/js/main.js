@@ -3,7 +3,7 @@ let currentChannels = [
     name: "general",
     messages: [
       {
-        author: "Yo",
+        author: "Mancito",
         content: "Hola",
         timestamp: new Date("May 22, 2016 15:00:00")
       },
@@ -13,7 +13,7 @@ let currentChannels = [
         timestamp: new Date("May 22, 2016 16:00:00")
       },
       {
-        author: "Yo",
+        author: "Mancito",
         content: "muy bien",
         timestamp: new Date("May 23, 2016 15:00:00")
       },
@@ -23,7 +23,7 @@ let currentChannels = [
         timestamp: new Date("May 23, 2016 15:00:00")
       },
       {
-        author: "Yo",
+        author: "Mancito",
         content: "muy bien too",
         timestamp: new Date("May 23, 2016 15:00:00")
       }
@@ -185,12 +185,20 @@ function renderComments(channelName) {
     divMessageGroup.innerHTML = `${savedTime.toDateString()}`;
     const divMessage = document.createElement("div");
 
-    divMessage.innerHTML = `<p class="message-item">${
-      channelMessage.author
-    } ${savedTime.toLocaleTimeString(undefined, {
-      hour: "2-digit",
-      minute: "2-digit"
-    })}</p> <p>${channelMessage.content}</p>`;
+    divMessage.innerHTML = `<div class="single-message">
+      <img src="./assets/user_icon.png" alt="user's icon">
+      <div class="written-part-msg">
+        <p class="message-item"><span class="msg-author">${
+          channelMessage.author
+        }</span> <span class="msg-date">${savedTime.toLocaleTimeString(
+      undefined,
+      {
+        hour: "2-digit",
+        minute: "2-digit"
+      }
+    )}</span></p> <p class="msg-content">${
+      channelMessage.content
+    }</p></div></div>`;
 
     //For grouping messages
     if (savedTime.getDate() != tempTime) {
