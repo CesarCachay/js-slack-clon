@@ -251,7 +251,7 @@ function sendNotification(currentUser) {
     currentUser.channel != currentChannels
   ) {
     const notification = new Notification("New message", {
-      body: `${currentUser.user}: ${currentUser.content}`,
+      body: `${currentUser.user}: ${currentUser.message}`,
       icon: "./assets/slack_logo.png"
     });
     notification.onclick = event => {
@@ -259,5 +259,3 @@ function sendNotification(currentUser) {
     };
   }
 }
-
-// sendNotification(inputMessage);
