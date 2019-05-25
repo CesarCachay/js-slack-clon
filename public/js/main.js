@@ -31,6 +31,7 @@ let currentChannels = [
   }
 ];
 
+const socket = new WebSocket("ws://localhost:3000/connection");
 const $channels = document.getElementById("channels");
 
 // Get user from Local Storage
@@ -153,8 +154,10 @@ function receiveComment(inputMessage) {
 function makeComment() {
   let inputElement = document.getElementById("input-message");
   let inputMessage = inputElement.value;
-  send(inputMessage);
-  inputElement.parentElement.reset();
+  if (inputMessage != "") {
+    send(inputMessage);
+    inputElement.parentElement.reset();
+  }
 }
 
 function findChannelByName(channelName) {
@@ -178,24 +181,25 @@ function renderComments(channelName) {
   channel.messages.forEach(channelMessage => {
     const divMessageGroup = document.createElement("hr");
     divMessageGroup.className = "message-group";
-    divMessageGroup.innerHTML = `${channelMessage.timestamp.toDateString()}`;
+    let savedTime = new Date(channelMessage.timestamp);
+    divMessageGroup.innerHTML = `${savedTime.toDateString()}`;
     const divMessage = document.createElement("div");
 
     divMessage.innerHTML = `<p class="message-item">${
       channelMessage.author
-    } ${channelMessage.timestamp.toLocaleTimeString(undefined, {
+    } ${savedTime.toLocaleTimeString(undefined, {
       hour: "2-digit",
       minute: "2-digit"
     })}</p> <p>${channelMessage.content}</p>`;
 
     //For grouping messages
-    if (channelMessage.timestamp.getDate() != tempTime) {
+    if (savedTime.getDate() != tempTime) {
       msgDisplay.appendChild(divMessageGroup);
       msgDisplay.appendChild(divMessage);
     } else {
       msgDisplay.appendChild(divMessage);
     }
-    tempTime = channelMessage.timestamp.getDate();
+    tempTime = savedTime.getDate();
   });
   document
     .querySelector(".msg-display")
@@ -203,7 +207,6 @@ function renderComments(channelName) {
 }
 
 /// Server
-const socket = new WebSocket("ws://localhost:3000/connection");
 
 socket.addEventListener("open", () => {
   console.log("Connection open");
