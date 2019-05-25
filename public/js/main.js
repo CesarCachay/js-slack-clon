@@ -258,6 +258,7 @@ socket.addEventListener("close", () => {
 socket.addEventListener("message", event => {
   const newMessages = JSON.parse(event.data);
   receiveComment(newMessages);
+  sendNotification(newMessages);
 });
 
 async function askNotification() {
@@ -268,3 +269,21 @@ async function askNotification() {
 }
 
 askNotification();
+
+function sendNotification(currentUser) {
+  if (
+    currentUser.user != currentUser.name &&
+    currentUser.channel != currentChannels.channel
+  ) {
+    const notification = new Notification(
+      `New message in channel "${currentUser.channel}"`,
+      {
+        body: `${currentUser.user}: ${currentUser.message}`,
+        icon: "./assets/favicon.ico"
+      }
+    );
+    notification.onclick = event => {
+      notification.close();
+    };
+  }
+}
