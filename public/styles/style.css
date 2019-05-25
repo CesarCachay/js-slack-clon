@@ -185,6 +185,8 @@ span {
 
 .channels-list {
   width: 86%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .title-plus {
