@@ -5,24 +5,33 @@ let currentChannels = [
       {
         author: "Yo",
         content: "Hola",
-        timestamp: new Date().toLocaleTimeString(undefined, {
-          hour: "2-digit",
-          minute: "2-digit"
-        })
+        timestamp: new Date("May 22, 2016 15:00:00")
       },
       {
         author: "Ricardo",
-        content: "bebe",
-        timestamp: new Date().toLocaleTimeString(undefined, {
-          hour: "2-digit",
-          minute: "2-digit"
-        })
+        content: "como estas?",
+        timestamp: new Date("May 22, 2016 16:00:00")
+      },
+      {
+        author: "Yo",
+        content: "muy bien",
+        timestamp: new Date("May 23, 2016 15:00:00")
+      },
+      {
+        author: "Ricardo",
+        content: "tu",
+        timestamp: new Date("May 23, 2016 15:00:00")
+      },
+      {
+        author: "Yo",
+        content: "muy bien too",
+        timestamp: new Date("May 23, 2016 15:00:00")
       }
     ]
   }
 ];
 
-let activeChannel = "general";
+const socket = new WebSocket("ws://localhost:3000/connection");
 const $channels = document.getElementById("channels");
 
 // Get user from Local Storage
@@ -43,10 +52,22 @@ if (localChannels == null) {
 }
 renderChannel(currentChannels);
 
+var activeChannel = localStorage.getItem("activeChannel");
+if (activeChannel == null) {
+  localStorage.setItem("activeChannel", "general");
+  activeChannel = "general";
+}
+renderComments(activeChannel);
+
 // Channels
 // Initialize channels
 
 function addChannel(name) {
+  if (findChannelByName(name)) {
+    console.log("already exists");
+    return;
+  }
+
   const channel = {
     name: name,
     messages: []
@@ -54,14 +75,21 @@ function addChannel(name) {
 
   currentChannels.push(channel);
   saveChannelStorage();
+  return currentChannels[currentChannels.length - 1];
 }
 
 function addChannelListener() {
-  let channelFromPrompt = window.prompt("Add new channel,here", "defaultText");
+  let channelFromPrompt = window
+    .prompt("Add new channel,here", "")
+    .replace(/\s/g, "_");
 
   if (channelFromPrompt != null) {
     addChannel(channelFromPrompt);
     renderChannel(currentChannels);
+
+    new Notification("Slack Clone", {
+      body: "New channel is created"
+    });
   }
 }
 
@@ -95,72 +123,90 @@ function send(msg) {
   socket.send(
     JSON.stringify({
       message: msg,
-      user: localStorage.getItem("currentUser")
+      user: localStorage.getItem("currentUser"),
+      channel: activeChannel
     })
   );
 }
 
 // Sent messages using the form
 function receiveComment(inputMessage) {
-  // {message: "Esto fue una prueba", user: "CesarCachay"}
+  // {message: "Esto fue una prueba", user: "CesarCachay", channel: "varios"}
+  console.log("received message: ", inputMessage);
   const newMessage = {
     author: inputMessage.user,
     content: inputMessage.message,
-    timestamp: new Date().toLocaleTimeString(undefined, {
-      hour: "2-digit",
-      minute: "2-digit"
-    })
+    timestamp: new Date()
   };
 
-  let channel = currentChannels.find(obj => {
-    return obj.name === activeChannel;
-  });
+  let channel = findChannelByName(inputMessage.channel);
+
+  if (channel == undefined) {
+    channel = addChannel(inputMessage.channel);
+    renderChannel(currentChannels);
+  }
+
   channel.messages.push(newMessage);
+  saveChannelStorage();
   renderComments(activeChannel);
 }
 
 function makeComment() {
   let inputElement = document.getElementById("input-message");
   let inputMessage = inputElement.value;
-  console.log(send(inputMessage));
-  newMessage = {
-    author: savedUser,
-    content: inputMessage,
-    timestamp: new Date().toLocaleTimeString(undefined, {
-      hour: "2-digit",
-      minute: "2-digit"
-    })
-  };
-
-  let channel = currentChannels.find(obj => {
-    return obj.name === activeChannel;
-  });
-  // channel.messages.push(newMessage);
-  // renderComments(activeChannel);
-  inputElement.parentElement.reset();
+  if (inputMessage != "") {
+    send(inputMessage);
+    inputElement.parentElement.reset();
+  }
 }
 
-// Render the messages TO DO
-function renderComments(channelName) {
-  document.getElementById("channel-title").innerText = `#${channelName}`;
-  activeChannel = channelName;
-  let channel = currentChannels.find(obj => {
+function findChannelByName(channelName) {
+  return currentChannels.find(obj => {
     return obj.name === channelName;
   });
+}
+// Render the messages TO DO
+function renderComments(channelName) {
+  localStorage.setItem("activeChannel", channelName);
+  document.getElementById("channel-title").innerText = `#${channelName}`;
+  activeChannel = channelName;
+
+  let channel = findChannelByName(channelName);
+  console.log(channel);
 
   let msgDisplay = document.getElementsByClassName("msg-display")[0];
   msgDisplay.innerHTML = "";
+
+  var tempTime = "";
   channel.messages.forEach(channelMessage => {
+    const divMessageGroup = document.createElement("hr");
+    divMessageGroup.className = "message-group";
+    let savedTime = new Date(channelMessage.timestamp);
+    divMessageGroup.innerHTML = `${savedTime.toDateString()}`;
     const divMessage = document.createElement("div");
-    divMessage.innerHTML = `<p class="message-item">${channelMessage.author} ${
-      channelMessage.timestamp
-    }</p> <p>${channelMessage.content}</p>`;
-    msgDisplay.appendChild(divMessage);
+
+    divMessage.innerHTML = `<p class="message-item">${
+      channelMessage.author
+    } ${savedTime.toLocaleTimeString(undefined, {
+      hour: "2-digit",
+      minute: "2-digit"
+    })}</p> <p>${channelMessage.content}</p>`;
+
+    //For grouping messages
+    if (savedTime.getDate() != tempTime) {
+      msgDisplay.appendChild(divMessageGroup);
+      msgDisplay.appendChild(divMessage);
+    } else {
+      msgDisplay.appendChild(divMessage);
+    }
+    tempTime = savedTime.getDate();
   });
+  document
+    .querySelector(".msg-display")
+    .scrollTo(0, document.querySelector(".msg-display").scrollHeight);
 }
 
 /// Server
-const socket = new WebSocket("ws://localhost:3000/connection");
 
 socket.addEventListener("open", () => {
   console.log("Connection open");
@@ -172,3 +218,12 @@ socket.addEventListener("message", event => {
   const newMessages = JSON.parse(event.data);
   receiveComment(newMessages);
 });
+
+async function askNotification() {
+  let status = await Notification.requestPermission();
+  if (Notification.permission !== "granted") {
+    console.log("notification desactive"); // replace by notification custom
+  }
+}
+
+askNotification();
