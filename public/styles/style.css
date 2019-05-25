@@ -335,6 +335,29 @@ span {
   padding-left: 15px;
 }
 
+.single-message {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+
+.single-message img {
+  height: 36px;
+  width: 36px;
+  margin-right: 7px;
+}
+
+.msg-author {
+  color: black !important;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.msg-date,
+.msg-content {
+  font-size: 15px;
+}
+
 .message-group {
   text-align: center;
 }
