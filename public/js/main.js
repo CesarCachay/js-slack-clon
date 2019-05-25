@@ -174,7 +174,7 @@ function colorChannel(channelElement) {
     channel.style.backgroundColor = "";
     channel.style.color = "rgb(167, 163, 168)";
   });
-  if (channelElement !== undefined) {
+  if (channelElement) {
     channelElement.style.backgroundColor = "rgb(16,100,163)";
     channelElement.style.color = "rgb(255,255,255)";
   }
