@@ -25,7 +25,7 @@ let currentChannels = [
       {
         author: "Mancito",
         content: "muy bien too",
-        timestamp: new Date("May 23, 2016 15:00:00")
+        timestamp: new Date("May 24, 2019 15:00:00")
       }
     ]
   }
@@ -149,11 +149,10 @@ function receiveComment(inputMessage) {
   channel.messages.push(newMessage);
   saveChannelStorage();
   renderComments(activeChannel);
-    
-  if(localStorage.getItem("currentUser") !== newMessage.author) {
+
+  if (localStorage.getItem("currentUser") !== newMessage.author) {
     const sound = new Audio("../assets/notification-sound.mp3");
     sound.play();
-
   }
 }
 
@@ -188,15 +187,18 @@ function renderComments(channelName) {
     const divMessageGroup = document.createElement("hr");
     divMessageGroup.className = "message-group";
     let savedTime = new Date(channelMessage.timestamp);
-    console.log(savedTime);
+
+    // Comparison of dates for group
     if (savedTime.toDateString() === new Date().toDateString()) {
       divMessageGroup.innerHTML = "Today";
+    } else if (savedTime.toDateString() === calDateBefore()) {
+      divMessageGroup.innerHTML = "Yesterday";
     } else {
       divMessageGroup.innerHTML = `${savedTime.toDateString()}`;
     }
 
     const divMessage = document.createElement("div");
-
+    //Render messages
     divMessage.innerHTML = `<div class="single-message">
       <img src="./assets/user_icon.png" alt="user's icon">
       <div class="written-part-msg">
@@ -224,6 +226,13 @@ function renderComments(channelName) {
   document
     .querySelector(".msg-display")
     .scrollTo(0, document.querySelector(".msg-display").scrollHeight);
+}
+
+function calDateBefore() {
+  var datenew = new Date();
+  var beforeDate = datenew.getDate() - 1;
+  datenew.setDate(beforeDate);
+  return datenew.toDateString();
 }
 
 /// Server
