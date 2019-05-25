@@ -3,6 +3,9 @@ body {
   grid-template-columns: 220px 1fr;
   margin: 0px;
   font-family: "Lato", sans-serif;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 p {
