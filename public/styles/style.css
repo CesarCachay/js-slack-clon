@@ -8,6 +8,10 @@ body {
   overflow-y: hidden;
 }
 
+img {
+  border-radius: 3px;
+}
+
 p {
   margin: 0px;
   padding: 0px;
@@ -367,10 +371,14 @@ span {
 }
 
 .single-message {
+  padding: 7px 15px 7px 15px;
   display: flex;
   flex-direction: row;
-  margin-bottom: 8px;
   justify-content: left;
+}
+
+.single-message:hover {
+  background-color: rgb(226, 227, 220);
 }
 
 .single-message img {
@@ -381,13 +389,19 @@ span {
 
 .msg-author {
   color: black !important;
+  padding-left: 2px;
   font-size: 15px;
   font-weight: bold;
 }
 
-.msg-date,
+.msg-date {
+  font-size: 12px;
+  padding-left: 2px;
+}
+
 .msg-content {
   font-size: 15px;
+  padding: 3px;
 }
 
 .msg-content {
@@ -395,8 +409,26 @@ span {
 }
 
 .message-group {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 40px;
   width: 100%;
+}
+
+.message-group hr {
+  position: absolute;
+  top: 22px;
+  width: 100%;
+  z-index: 1;
+}
+
+.message-group div {
+  position: absolute;
+  background-color: white;
+  z-index: 10;
 }
 
 .input-msg {
