@@ -480,4 +480,17 @@ span {
   .quick-options-and-topics {
     visibility: hidden;
   }
+
+  .input-message {
+    width: 80%;
+    height: 10px;
+  }
+
+  .right-column {
+    height: 100vh;
+  }
+
+  .body {
+    height: 100vh;
+  }
 }
