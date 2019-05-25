@@ -149,6 +149,12 @@ function receiveComment(inputMessage) {
   channel.messages.push(newMessage);
   saveChannelStorage();
   renderComments(activeChannel);
+    
+  if(localStorage.getItem("currentUser") != newMessage.author) {
+    const sound = new Audio("../assets/notification-sound.mp3");
+    sound.play();
+
+  }
 }
 
 function makeComment() {
