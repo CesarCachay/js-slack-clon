@@ -271,6 +271,7 @@ span {
 .quick-options-and-topics {
   font-size: 13px;
   color: #4d4d4d;
+  visibility: visible;
 }
 
 .channel-options {
@@ -302,6 +303,7 @@ span {
   width: 22px;
   padding: 6px;
   color: #827f83;
+  visibility: visible;
 }
 
 .fa-user:hover,
@@ -335,6 +337,7 @@ span {
   align-items: center;
   margin-right: 8px;
   margin-bottom: 3px;
+  visibility: visible;
 }
 
 .search-box span {
@@ -345,6 +348,7 @@ span {
 
 .search-box .fa-search {
   font-size: 15px;
+  visibility: visible;
 }
 
 .search-box:hover span,
@@ -408,4 +412,40 @@ span {
   height: 26px;
   border: 1px solid rgb(15, 15, 15);
   border-radius: 0.5em;
+}
+
+@media (max-width: 768px) {
+  .search-box {
+    visibility: hidden;
+    width: 20px;
+  }
+
+  .search-box .fa-search {
+    font-size: 15px;
+    visibility: visible !important;
+  }
+
+  .fa-phone,
+  .fa-info-circle,
+  .fa-cog,
+  .fa-at,
+  .fa-star,
+  .fa-ellipsis-v {
+    height: 12px;
+    width: 12px;
+    padding: 5px;
+    color: #827f83;
+  }
+
+  .fa-phone,
+  .fa-info-circle,
+  .fa-cog,
+  .fa-at,
+  .fa-star {
+    visibility: hidden;
+  }
+
+  .quick-options-and-topics {
+    visibility: hidden;
+  }
 }
