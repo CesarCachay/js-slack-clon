@@ -230,9 +230,6 @@ socket.addEventListener("close", () => {
 socket.addEventListener("message", event => {
   const newMessages = JSON.parse(event.data);
   receiveComment(newMessages);
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-  console.log(newMessages);
-  console.log(sendNotification(newMessages));
   sendNotification(newMessages);
 });
 
@@ -248,12 +245,15 @@ askNotification();
 function sendNotification(currentUser) {
   if (
     currentUser.user != currentUser.name &&
-    currentUser.channel != currentChannels
+    currentUser.channel != currentChannels.channel
   ) {
-    const notification = new Notification("New message", {
-      body: `${currentUser.user}: ${currentUser.message}`,
-      icon: "./assets/slack_logo.png"
-    });
+    const notification = new Notification(
+      `New message in channel "${currentUser.channel}"`,
+      {
+        body: `${currentUser.user}: ${currentUser.message}`,
+        icon: "./assets/favicon.ico"
+      }
+    );
     notification.onclick = event => {
       notification.close();
     };
