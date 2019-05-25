@@ -15,10 +15,12 @@
     <link rel="icon" href="./assets/favicon.ico">
   </head>
   <body>
-    <div class="top-bar">
+    <nav class="top-bar">
       <div class=right-part>
-        <a class="logo-img" href="#"></a>
+        <a class="logo-img" href="#"><img src="./assets/slack_logo.png" alt="slack logo"></a>
       </div>
+      <label for="hamburger">&#9776;</label>
+      <input type="checkbox" id="hamburger"/>
       <ul class="left-part">
         <li>
           <a class="left-part__link" href="#">Product</a>
@@ -39,8 +41,7 @@
           <button class="left-part__login" href="">Sign In</button>
         </li>
       </ul>
-    </div>
-    </div>
+    </nav>
 
     <div class="div_form">
       <form class="form" name="login" action="./main.html" onsubmit="Login()" id="login-form">

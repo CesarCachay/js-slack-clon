@@ -1,11 +1,10 @@
 body {
   background: rgb(214, 208, 208) !important;
   font-family: "Lato", sans-serif;
+  height: 100vh;
 }
 
-.logo-img {
-  background: url(../assets/slack_logo.png) left top no-repeat;
-  background-size: 200px 60px;
+.logo-img img {
   height: 55px;
   width: 200px;
   float: left;
@@ -43,6 +42,11 @@ body {
   text-decoration: none;
 }
 
+.top-bar label,
+#hamburger {
+  display: none;
+}
+
 .right-part {
   display: flex;
   justify-content: center;
@@ -65,6 +69,7 @@ body {
   display: inline-block;
   justify-content: space-around;
   margin: 0 5px;
+  box-sizing: border-box;
 }
 
 .left-part__link:hover {
@@ -91,7 +96,7 @@ body {
   justify-content: space-around;
   display: flex;
   flex-wrap: wrap;
-  height: 330px;
+  height: 60%;
 }
 
 .form {
@@ -184,4 +189,32 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+/* responsive */
+
+@media (max-width: 768px) {
+  .top-bar label {
+    display: inline-block;
+    color: grey;
+    font-style: normal;
+    font-size: 1.2em;
+    padding: 10px;
+  }
+
+  .top-bar ul li {
+    display: block;
+  }
+  .top-bar ul li {
+    border-top: 1px solid #333;
+    background-color: black;
+  }
+
+  .top-bar ul {
+    display: none;
+    z-index: 1;
+  }
+  .top-bar input:checked ~ ul {
+    display: block;
+  }
 }
