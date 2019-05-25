@@ -408,6 +408,10 @@ span {
   text-align: left;
 }
 
+.message-item {
+  text-align: left;
+}
+
 .message-group {
   display: flex;
   flex-direction: column;
