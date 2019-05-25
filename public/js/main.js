@@ -188,7 +188,13 @@ function renderComments(channelName) {
     const divMessageGroup = document.createElement("hr");
     divMessageGroup.className = "message-group";
     let savedTime = new Date(channelMessage.timestamp);
-    divMessageGroup.innerHTML = `${savedTime.toDateString()}`;
+    console.log(savedTime);
+    if (savedTime.toDateString() === new Date().toDateString()) {
+      divMessageGroup.innerHTML = "Today";
+    } else {
+      divMessageGroup.innerHTML = `${savedTime.toDateString()}`;
+    }
+
     const divMessage = document.createElement("div");
 
     divMessage.innerHTML = `<div class="single-message">
