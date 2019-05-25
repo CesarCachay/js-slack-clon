@@ -358,6 +358,7 @@ span {
 
 .msg-display {
   overflow-y: auto;
+  overflow-x: hidden;
   width: 98%;
   padding-left: 15px;
 }
