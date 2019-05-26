@@ -188,7 +188,6 @@ function renderComments(channelName, p) {
   colorChannel(p);
 
   let channel = findChannelByName(channelName);
-  console.log(p);
 
   let msgDisplay = document.getElementsByClassName("msg-display")[0];
   msgDisplay.innerHTML = "";
@@ -273,7 +272,7 @@ askNotification();
 function sendNotification(currentUser) {
   if (
     currentUser.user != currentUser.name &&
-    currentUser.channel != currentChannels.channel
+    currentUser.channel != activeChannel
   ) {
     const notification = new Notification(
       `New message in channel "${currentUser.channel}"`,
