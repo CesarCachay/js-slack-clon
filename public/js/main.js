@@ -54,6 +54,8 @@ if (localChannels == null) {
 renderChannel(currentChannels);
 
 var activeChannel = localStorage.getItem("activeChannel");
+var activeChannelElement;
+
 if (activeChannel == null) {
   localStorage.setItem("activeChannel", "general");
   activeChannel = "general";
@@ -144,7 +146,7 @@ function receiveComment(inputMessage) {
 
   channel.messages.push(newMessage);
   saveChannelStorage();
-  renderComments(activeChannel, null);
+  renderComments(activeChannel, activeChannelElement);
 
   if (localStorage.getItem("currentUser") !== newMessage.author) {
     const sound = new Audio("../assets/notification-sound.mp3");
@@ -185,6 +187,7 @@ function renderComments(channelName, p) {
   localStorage.setItem("activeChannel", channelName);
   document.getElementById("channel-title").innerText = `#${channelName}`;
   activeChannel = channelName;
+  activeChannelElement = p;
   colorChannel(p);
 
   let channel = findChannelByName(channelName);
@@ -286,3 +289,14 @@ function sendNotification(currentUser) {
     };
   }
 }
+
+let hamburguer = document.getElementById("hamburguer");
+hamburguer.addEventListener("click", () => {
+  document.getElementsByClassName("left-column")[0].style.display = "block";
+});
+
+let hamburguer2 = document.getElementById("hamburguer2");
+console.log(hamburguer2);
+hamburguer2.addEventListener("click", () => {
+  document.getElementsByClassName("left-column")[0].style.display = "none";
+});

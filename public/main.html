@@ -27,6 +27,7 @@
           <p class="codeable">Codeable <i class="fas fa-chevron-down"></i></p>
           <p id="current_user" class="usuario"></p>
         </div>
+        <i id="hamburguer2" class="fas fa-bars"></i>
         <div class="bell">
           <i class="far fa-bell"></i>
           <span class="tooltiptext">Notifications</span>
@@ -51,6 +52,7 @@
     <div class="right-column">
       <div class="header">
         <div class="channel-info">
+          <i id="hamburguer" class="fas fa-bars"></i>
           <p class="channel-title" id="channel-title">#general</p>
           <div class="quick-options-and-topics">
             <i class="far fa-star"></i> | <i class="far fa-user"></i> 33 |
@@ -72,7 +74,11 @@
       </div>
       <div class="msg-display"></div>
       <div class="input-msg">
-        <form action="javascript:makeComment();" autocomplete="off">
+        <form
+          class="input-detail"
+          action="javascript:makeComment();"
+          autocomplete="off"
+        >
           <label for="input-message" aria-label="write a message"></label>
           <input
             type="text"
