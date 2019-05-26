@@ -447,6 +447,14 @@ span {
 }
 
 @media (max-width: 768px) {
+  body {
+    margin: 0px;
+    font-family: "Lato", sans-serif;
+    /* overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: hidden; */
+  }
+
   .search-box {
     visibility: hidden;
     width: 20px;
@@ -482,7 +490,7 @@ span {
   }
 
   .input-message {
-    width: 80%;
+    width: 80% !important;
     height: 10px;
   }
 
