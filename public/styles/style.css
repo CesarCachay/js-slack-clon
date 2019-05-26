@@ -421,9 +421,6 @@ span {
 .msg-content {
   font-size: 15px;
   padding: 3px;
-}
-
-.msg-content {
   text-align: left;
 }
 
@@ -471,6 +468,7 @@ span {
 #hamburguer2 {
   color: white;
   display: none;
+  margin-top: 2px;
 }
 
 #hamburguer {
@@ -529,6 +527,7 @@ span {
     height: 10px;
     box-sizing: border-box;
     padding: 16px;
+    width: 100%;
     margin: 0 20px;
   }
   #hamburguer2 {
