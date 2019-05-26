@@ -1,11 +1,18 @@
+html {
+  width: 100vw;
+  height: 100vh;
+}
 body {
-  display: grid;
-  grid-template-columns: 220px 1fr;
+  /* display: grid;
+  grid-template-columns: 220px 1fr; */
+  display: flex;
+  flex-direction: row;
   margin: 0px;
   font-family: "Lato", sans-serif;
   overflow: scroll;
   overflow-x: hidden;
   overflow-y: hidden;
+  height: 100vh;
 }
 
 img {
@@ -27,6 +34,10 @@ span {
   align-items: center;
   background-color: #411d40;
   height: 100vh;
+  min-width: 220px;
+}
+.input-detail {
+  width: 89%;
 }
 
 .left-column p {
@@ -449,14 +460,14 @@ span {
   border: 1px solid rgb(15, 15, 15);
   border-radius: 0.5em;
 }
-
+/*
 @media (max-width: 768px) {
   body {
     margin: 0px;
     font-family: "Lato", sans-serif;
     /* overflow: scroll;
     overflow-x: hidden;
-    overflow-y: hidden; */
+    overflow-y: hidden; 
   }
 
   .search-box {
@@ -494,15 +505,22 @@ span {
   }
 
   .input-message {
-    width: 80% !important;
+    width: 100vw !important;
     height: 10px;
   }
 
   .right-column {
     height: 100vh;
+    width: 100vw;
   }
 
   .body {
     height: 100vh;
+    width: 100vw;
+  }
+
+  .header {
+    width: 100vw;
   }
 }
+*/
