@@ -111,11 +111,6 @@ span {
   width: 100%;
 }
 
-.user:hover {
-  background-color: #301231;
-  cursor: pointer;
-}
-
 .user:hover .usuario {
   color: white !important;
 }
