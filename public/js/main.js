@@ -290,3 +290,14 @@ function sendNotification(currentUser) {
     };
   }
 }
+
+let hamburguer = document.getElementById("hamburguer");
+hamburguer.addEventListener("click", () => {
+  document.getElementsByClassName("left-column")[0].style.display = "block";
+});
+
+let hamburguer2 = document.getElementById("hamburguer2");
+console.log(hamburguer2);
+hamburguer2.addEventListener("click", () => {
+  document.getElementsByClassName("left-column")[0].style.display = "none";
+});
